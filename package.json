@@ -4,7 +4,7 @@
   "description": "A random color generator with variants and color sets",
   "main": "/dist/src/index.js",
   "scripts": {
-    "test": "tsc && jest --no-cache",
+    "test": "tsc && jest --no-cache dist/test",
     "start": "tsc && node",
     "dev": "tsc && nodemon"
   },
