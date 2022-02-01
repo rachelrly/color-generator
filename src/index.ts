@@ -1,13 +1,24 @@
-import http from 'http'
-import fs from 'fs'
+import { SquareColorType } from './types'
 
-const server = http.createServer((_: any, res: any) => {
-  res.writeHead(200, { 'content-type': 'text/html' })
-  fs.createReadStream('index.html').pipe(res)
-})
+export function generateColors(): SquareColorType {
+  // Generate color here
+  return {
+    outerSquare: 'red',
+    middleSquare: 'yellow',
+    innerSquare: 'green'
+  }
+}
 
-const PORT = process.env.PORT || 8880
+export function setColors(): void {
+  const squares: SVGSVGElement | null = document.querySelector('svg')
+  console.log('THESE ARE MY SQUARES', squares)
+  if (squares) {
+    const colors = generateColors()
+    console.log('AND THERE ARE SQUARES', colors)
+    for (const [key, value] of Object.entries(colors)) {
+      squares.getElementById(key).setAttribute('fill', value)
+    }
+  }
+}
 
-server.listen(PORT, () =>
-  console.log(`Server started on port http://localhost:${PORT}`)
-)
+setColors()

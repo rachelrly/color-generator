@@ -18,31 +18,34 @@ export type ColorSetType = ColorPropType[]
 
 export type SetType = 'complementary' | 'triadic' | 'analogous'
 
-export type ColorStringType = string // How can this be validated??
+export type ColorStringType = string //TODO: Validate this
 
 export class Color {
-  get(color: ColorStringType): ColorPropType {
-    // Validates string as specified color string
-    // Turns color into color format
-    // Calls getColorVariants and _getTextColor
+  stringify(): string {
+    return 'red'
   }
+  // get(color: ColorStringType): ColorPropType {
+  //   // Validates string as specified color string
+  //   // Turns color into color format
+  //   // Calls getColorVariants and _getTextColor
+  // }
 
-  getRandom(): ColorPropType {
-    // Gets random color
-    // Calls getColorVariants and _getTextColor
-  }
+  // getRandom(): ColorPropType {
+  //   // Gets random color
+  //   // Calls getColorVariants and _getTextColor
+  // }
 
-  getColorVariants(color: ColorValueType): ColorPropType {
-    // gets similar variants
-  }
+  // getColorVariants(color: ColorValueType): ColorPropType {
+  //   // gets similar variants
+  // }
 
-  _getTextColor(color: ColorValueType): string {
-    // TODO: Base this on value of color
-    return '#000'
-  }
+  // _getTextColor(color: ColorValueType): string {
+  //   // TODO: Base this on value of color
+  //   return '#000'
+  // }
 
-  getColorSet(type: SetType, color?: ColorStringType): ColorSetType {
-    // If no color, generate random color
-    // Otherwise convert into color object
-  }
+  // getColorSet(type: SetType, color?: ColorStringType): ColorSetType {
+  //   // If no color, generate random color
+  //   // Otherwise convert into color object
+  // }
 }
