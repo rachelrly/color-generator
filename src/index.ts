@@ -11,12 +11,11 @@ export function generateColors(): SquareColorType {
 
 export function setColors(): void {
   const squares: SVGSVGElement | null = document.querySelector('svg')
-  console.log('THESE ARE MY SQUARES', squares)
   if (squares) {
     const colors = generateColors()
-    console.log('AND THERE ARE SQUARES', colors)
     for (const [key, value] of Object.entries(colors)) {
-      squares.getElementById(key).setAttribute('fill', value)
+      const square = squares.getElementById(key)
+      square.setAttribute('fill', value)
     }
   }
 }
