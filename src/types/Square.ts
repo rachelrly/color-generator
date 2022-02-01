@@ -6,3 +6,10 @@ export interface SquareColorType {
   middleSquare: ColorStringType
   innerSquare: ColorStringType
 }
+
+export interface SquareType {
+  side: number // since height and width are the same
+  offset?: number // since x and y offset are the same
+}
+
+export type TriSquareType = [SquareType, SquareType, SquareType]
