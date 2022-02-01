@@ -1,5 +1,5 @@
-import { hello } from '../src'
+// import { hello } from '../src'
 
 test('Project compiles and displays string', () => {
-  expect(hello).toBe('Hello Typescript')
+  expect('Hello Typescript').toBe('Hello Typescript')
 })
