@@ -4,8 +4,10 @@ export function incrementValue(
   max: number
 ) {
   const sum = initial + increment
+  const minus = (max * -1 + sum) * -1
   if (sum <= max && sum >= 0) return sum
-  else return (max * -1 + sum) * -1
+  else if (minus <= max) return minus
+  else return max
 }
 
 export function randomInt(max = 1) {
