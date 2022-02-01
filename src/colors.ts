@@ -2,10 +2,16 @@ import { SquareColorType } from './types'
 import { Hsla } from './types/Hsla'
 
 export function generateColors(): SquareColorType {
+  let color = new Hsla()
+  const outerSquare = color.stringify()
+  color.increment('h', 50)
+  const middleSquare = color.stringify()
+  color.increment('h', 50)
+  const innerSquare = color.stringify()
   return {
-    outerSquare: new Hsla().stringify(),
-    middleSquare: new Hsla().stringify(),
-    innerSquare: new Hsla().stringify()
+    outerSquare,
+    middleSquare,
+    innerSquare
   }
 }
 
