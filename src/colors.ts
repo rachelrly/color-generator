@@ -2,7 +2,7 @@ import { SquareColorType } from './types'
 import { Hsla, HslColorType } from './types'
 
 export function generateColors(
-  prop: keyof HslColorType = 'l',
+  prop: keyof HslColorType = 's',
   increment = 10
 ): SquareColorType {
   let color = new Hsla()

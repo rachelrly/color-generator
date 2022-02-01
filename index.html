@@ -9,13 +9,14 @@
       body {
         height: 100vh;
         width: 100vw;
+        overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: center;
       }
-      .container {
-        width: inherit;
-        height: inherit;
+      #sq_wrapper {
+        width: 100%;
+        height: 100%;
         padding: 2rem;
         display: flex;
         justify-content: center;
@@ -26,32 +27,7 @@
   </head>
   <body>
     <div id="sq_wrapper">
-      <svg width="400" height="400">
-        <rect
-          id="outerSquare"
-          x="0"
-          y="0"
-          width="400"
-          height="400"
-          fill="#F5F5F5"
-        />
-        <rect
-          id="middleSquare"
-          x="75"
-          y="75"
-          width="250"
-          height="250"
-          fill="#E0E0E0"
-        />
-        <rect
-          id="innerSquare"
-          x="150"
-          y="150"
-          width="100"
-          height="100"
-          fill="#9E9E9E"
-        />
-      </svg>
+      <svg height="100%" width="100%" id="svg_wrapper" />
     </div>
   </body>
 </html>

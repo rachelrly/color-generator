@@ -1,2 +1,2 @@
 export * from './num'
-export * from './svgSquare'
+export * from './constants'
