@@ -7,7 +7,7 @@
   "scripts": {
     "test": "tsc && jest --no-cache dist/test",
     "start": "rm -rf /dist && tsc && parcel",
-    "build": "rm -rf /dist && tsc && parcel build",
+    "build": "tsc && parcel build index.html",
     "dev": "tsc && parcel --open chrome"
   },
   "author": "Rachel Reilly",
@@ -17,6 +17,7 @@
     "@types/jest": "^27.4.0",
     "jest": "^27.4.7",
     "parcel": "^2.2.1",
+    "parcel-bundler": "^1.12.5",
     "ts-jest": "^27.1.3",
     "typescript": "^4.5.5"
   },
