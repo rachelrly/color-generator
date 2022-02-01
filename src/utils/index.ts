@@ -1,2 +1,1 @@
-export * from './dot'
-export * from './utils'
+export * from './num'
