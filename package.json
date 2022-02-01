@@ -7,7 +7,7 @@
   "scripts": {
     "test": "tsc && jest --no-cache dist/test",
     "start": "rm -rf /dist && tsc && parcel",
-    "build": "tsc && parcel build index.html",
+    "build": "tsc && npx parcel build index.html",
     "dev": "tsc && parcel --open chrome"
   },
   "author": "Rachel Reilly",
