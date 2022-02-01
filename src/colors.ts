@@ -1,12 +1,15 @@
 import { SquareColorType } from './types'
-import { Hsla } from './types/Hsla'
+import { Hsla, HslColorType } from './types'
 
-export function generateColors(): SquareColorType {
+export function generateColors(
+  prop: keyof HslColorType = 'l',
+  increment = 10
+): SquareColorType {
   let color = new Hsla()
   const outerSquare = color.stringify()
-  color.increment('h', 50)
+  color.increment(prop, increment)
   const middleSquare = color.stringify()
-  color.increment('h', 50)
+  color.increment(prop, increment)
   const innerSquare = color.stringify()
   return {
     outerSquare,
