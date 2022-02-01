@@ -1,10 +1,12 @@
+import { Hsla } from './Hsla'
+import { Rgb } from './Rgb'
+
 export interface HslColorType {
   h: number
   s: number
   l: number
   a?: number
 }
-
 type ColorValueType = HslColorType // Add other color types here
 
 export interface ColorPropType {
@@ -20,32 +22,30 @@ export type SetType = 'complementary' | 'triadic' | 'analogous'
 
 export type ColorStringType = string //TODO: Validate this
 
-export class Color {
-  stringify(): string {
-    return 'red'
-  }
-  // get(color: ColorStringType): ColorPropType {
-  //   // Validates string as specified color string
-  //   // Turns color into color format
-  //   // Calls getColorVariants and _getTextColor
-  // }
+export type ColorType = Hsla | Rgb
 
-  // getRandom(): ColorPropType {
-  //   // Gets random color
-  //   // Calls getColorVariants and _getTextColor
-  // }
+// get(color: ColorStringType): ColorPropType {
+//   // Validates string as specified color string
+//   // Turns color into color format
+//   // Calls getColorVariants and _getTextColor
+// }
 
-  // getColorVariants(color: ColorValueType): ColorPropType {
-  //   // gets similar variants
-  // }
+// getRandom(): ColorPropType {
+//   // Gets random color
+//   // Calls getColorVariants and _getTextColor
+// }
 
-  // _getTextColor(color: ColorValueType): string {
-  //   // TODO: Base this on value of color
-  //   return '#000'
-  // }
+// getColorVariants(color: ColorValueType): ColorPropType {
+//   // gets similar variants
+// }
 
-  // getColorSet(type: SetType, color?: ColorStringType): ColorSetType {
-  //   // If no color, generate random color
-  //   // Otherwise convert into color object
-  // }
-}
+// _getTextColor(color: ColorValueType): string {
+//   // TODO: Base this on value of color
+//   return '#000'
+// }
+
+// getColorSet(type: SetType, color?: ColorStringType): ColorSetType {
+//   // If no color, generate random color
+//   // Otherwise convert into color object
+// }
+// }
