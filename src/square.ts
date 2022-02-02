@@ -1,14 +1,6 @@
 import { SVGN } from './utils'
 import { setColors } from './colors'
-
-interface SvgSquareType {
-  x: string
-  y?: string
-  width: string
-  height?: string
-  fill?: string
-  id?: string
-}
+import { SvgSquareType } from './types'
 
 export function makeStackedSquare(squares: SvgSquareType[]) {
   //const square = svgSquare() // generate svg code
