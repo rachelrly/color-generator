@@ -1,8 +1,8 @@
-# [Color Generator](practical-sinoussi-967ca9.netlify.app)
+# [Color Generator](https://practical-sinoussi-967ca9.netlify.app)
 
 This repo contains an enhanced color generator that returns a random HSL color and has the ability to increment the color based on hue, saturation, or lightness.
 
-View a live demo of the color generator [here](practical-sinoussi-967ca9.netlify.app).
+View a live demo of the color generator [here](https://practical-sinoussi-967ca9.netlify.app).
 To generate a new color set, click of the square.
 
 ## Stack
