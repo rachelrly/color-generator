@@ -1,35 +1,16 @@
-import { SquareColorType } from './types'
-import { Hsla, HslColorType } from './types'
-import { randomDecimal } from './utils'
+import { SvgSquareType } from './types'
+import { Hsla } from './types'
 
-export function generateColors(
-  prop: keyof HslColorType = 'l',
-  increment = 30
-): SquareColorType {
-  let color = new Hsla()
-  const outerSquare = color.stringify()
-  color.increment(prop, increment)
-  const middleSquare = color.stringify()
-  color.increment(prop, increment)
-  const innerSquare = color.stringify()
-  return {
-    outerSquare,
-    middleSquare,
-    innerSquare
-  }
-}
-
-// break this logic down to set color for square
-
-export function setColors(): void {
+export function setColors(stack: SvgSquareType[]): void {
   const squares: SVGSVGElement | null = document.querySelector('svg')
+  let color = new Hsla()
 
-  console.log('THESE ARE MY SQUARES', squares)
-  if (squares) {
-    const colors = generateColors()
-    for (const [key, value] of Object.entries(colors)) {
-      const square = squares.getElementById(key)
-      if (square) square.setAttribute('fill', value)
-    }
+  if (squares && stack.length) {
+    stack.forEach((square: SvgSquareType) => {
+      // increment color in class
+      color.increment('h', 100) // HARDCODED FOR TESTING
+      const squareElem = squares.getElementById(square.id)
+      if (squareElem) squareElem.setAttribute('fill', color.stringify())
+    })
   }
 }

@@ -5,7 +5,6 @@ import { SvgSquareType, Hsla } from './types'
 export function makeStackedSquare(squares: SvgSquareType[]) {
   // Makes stacked square in dom
   squares.forEach((square: SvgSquareType) => makeSquare(square))
-  setColors()
 }
 
 export function makeSquare({ x, y, width, height, fill, id }: SvgSquareType) {
@@ -17,7 +16,7 @@ export function makeSquare({ x, y, width, height, fill, id }: SvgSquareType) {
     square.setAttribute('width', width)
     square.setAttribute('height', height || width)
     square.setAttribute('fill', fill || 'pink')
-    if (id) square.setAttribute('id', id)
+    square.setAttribute('id', id)
     svg?.appendChild(square)
   }
 }

@@ -13,6 +13,6 @@ export interface SvgSquareType {
   width: string
   height?: string
   fill?: string
-  id?: string
+  id: string
   color?: ColorStringType | ColorType
 }
