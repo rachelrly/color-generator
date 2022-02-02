@@ -1,4 +1,4 @@
-import { randomInt, incrementValue } from '../utils'
+import { randomInt, incrementValue, randomDecimal } from '../utils'
 
 export interface HslColorType {
   // How can this be derived from the class??
@@ -19,7 +19,7 @@ export class Hsla {
     h = randomInt(255),
     s = randomInt(100),
     l = randomInt(100),
-    a = Number(Math.random().toFixed())
+    a = randomDecimal()
   ) {
     this.h = h
     this.s = s
@@ -29,7 +29,7 @@ export class Hsla {
       ;(this.h = randomInt(h)),
         (this.s = randomInt(s)),
         (this.l = randomInt(l)),
-        (this.a = Math.random())
+        (this.a = parseFloat(Math.random().toFixed()))
     }
   }
 
