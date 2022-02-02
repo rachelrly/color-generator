@@ -1,24 +1,27 @@
 import { setColors } from './colors'
 import { makeStackedSquare } from './square'
+import { Hsla, SvgSquareType } from './types'
 
-const stack = [
-  { x: '0', width: '400', fill: '#F5F5F5', id: 'outerSquare' },
-  { x: '75', width: '250', fill: '#E0E0E0', id: 'middleSquare' },
-  { x: '150', width: '100', fill: '#9E9E9E', id: 'innerSquare' }
-]
-
-const stack2 = [
-  { x: '300', width: '400', fill: '#F5F5F5', id: 'outerSquare' },
-  { x: '375', width: '250', fill: '#E0E0E0', id: 'middleSquare' },
-  { x: '450', width: '100', fill: '#9E9E9E', id: 'innerSquare' }
-]
+function createStack(num = 400): SvgSquareType[] {
+  const arr = new Array(4)
+  return arr.fill(undefined).map((_, index) => {
+    const invertedIndex = arr.length - index
+    const col = new Hsla()
+    return {
+      x: `${(num - (num / arr.length) * invertedIndex) / 2}`,
+      width: `${(num / arr.length) * invertedIndex}`,
+      fill: col.stringify(),
+      id: `outerSquare${invertedIndex}`
+    }
+  })
+}
 
 export function main() {
   const div: HTMLElement | null = document.getElementById('sq_wrapper')
   if (div) {
     div.addEventListener('click', setColors)
+    const stack = createStack()
     makeStackedSquare(stack)
-    makeStackedSquare(stack2)
   } else setTimeout(main, 500)
 }
 
