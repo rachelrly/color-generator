@@ -13,3 +13,7 @@ export function incrementValue(
 export function randomInt(max = 1) {
   return Math.floor(Math.random() * max)
 }
+
+export function randomDecimal(): number {
+  return parseFloat(Math.random().toFixed(2))
+}

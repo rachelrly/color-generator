@@ -1,4 +1,12 @@
-import { randomInt, incrementValue } from '../utils'
+import { randomInt, incrementValue, randomDecimal } from '../utils'
+
+export interface HslColorType {
+  // How can this be derived from the class??
+  h: number // 0-255
+  s: number // 0-100%
+  l: number // 0-100%
+  a?: number // 0-1
+}
 
 export class Hsla {
   h: number // 0-255
@@ -11,7 +19,7 @@ export class Hsla {
     h = randomInt(255),
     s = randomInt(100),
     l = randomInt(100),
-    a = Number(Math.random().toFixed())
+    a = randomDecimal()
   ) {
     this.h = h
     this.s = s
@@ -21,7 +29,7 @@ export class Hsla {
       ;(this.h = randomInt(h)),
         (this.s = randomInt(s)),
         (this.l = randomInt(l)),
-        (this.a = Math.random())
+        (this.a = parseFloat(Math.random().toFixed()))
     }
   }
 
@@ -36,8 +44,9 @@ export class Hsla {
       if (max === 1) max = 255
       this.h = incrementValue(this.h, increment, max)
     } else if (prop === 'a') {
-      if (this.a) this.a = incrementValue(this.a, increment, 1)
-      else this.a = Math.random()
+      this.a = Math.random()
+      // if (this.a) this.a = incrementValue(this.a, increment, 1)
+      // else this.a = Math.random()
     } else {
       // assumed to be 's' or 'l' percentage
       if (max === 1) max = 100
