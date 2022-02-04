@@ -11,6 +11,12 @@ To generate a new color set, click of the square.
 - Parcel
 - Deployed with Netlify
 
+## Images
+
+![](https://flic.kr/p/2n1LNkZ)
+![](https://flic.kr/p/2n1LNj1)
+![](https://flic.kr/p/2n1LNjb)
+
 ## Codebase
 
 ### /src
