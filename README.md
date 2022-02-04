@@ -13,9 +13,9 @@ To generate a new color set, click of the square.
 
 ## Images
 
-![orange square](https://flic.kr/p/2n1LNkZ)
-![orange square](https://flic.kr/p/2n1LNj1)
-![orange square](https://flic.kr/p/2n1LNjb)
+![orange square](https://www.flickr.com/photos/194941749@N07/51860925503/in/dateposted-public/)
+![orange square](https://www.flickr.com/photos/194941749@N07/51860925388/in/dateposted-public/)
+![orange square](https://www.flickr.com/photos/194941749@N07/51860925398/in/dateposted-public/)
 
 ## Codebase
 
