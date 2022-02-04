@@ -13,7 +13,8 @@ To generate a new color set, click of the square.
 
 ## Images
 
-![orange square](https://www.flickr.com/photos/194941749@N07/51860925503)
+<a data-flickr-embed="true" href="https://www.flickr.com/photos/194941749@N07/51860925398/in/dateposted-public/" title="sample-3"><img src="https://live.staticflickr.com/65535/51860925398_aee2645c67_z.jpg" width="564" height="626" alt="sample-3"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
 ![orange square](https://www.flickr.com/photos/194941749@N07/51860925388)
 ![orange square](https://www.flickr.com/photos/194941749@N07/51860925398)
 
