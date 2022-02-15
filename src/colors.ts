@@ -8,7 +8,7 @@ export function setColors(stack: SvgSquareType[]): void {
   if (squares && stack.length) {
     stack.forEach((square: SvgSquareType) => {
       // increment color in class
-      color.increment('h', 100) // HARDCODED FOR TESTING
+      color.increment('l', 10) // HARDCODED FOR TESTING
       const squareElem = squares.getElementById(square.id)
       if (squareElem) squareElem.setAttribute('fill', color.stringify())
     })
