@@ -1,5 +1,4 @@
-import { SVGN } from './utils'
-import { setColors } from './colors'
+import { setSvg } from './utils'
 import { SvgSquareType, Hsla } from './types'
 
 export function makeStackedSquare(squares: SvgSquareType[]) {
@@ -8,17 +7,15 @@ export function makeStackedSquare(squares: SvgSquareType[]) {
 }
 
 export function makeSquare({ x, y, width, height, fill, id }: SvgSquareType) {
-  const square = document.createElementNS(SVGN, 'rect')
-  const svg = document.getElementById('svg_wrapper')
-  if (square) {
+  function setSquareAttributes(square: SVGRectElement) {
     square.setAttribute('x', x)
     square.setAttribute('y', y || x)
     square.setAttribute('width', width)
     square.setAttribute('height', height || width)
     square.setAttribute('fill', fill || 'pink')
     square.setAttribute('id', id)
-    svg?.appendChild(square)
   }
+  setSvg(setSquareAttributes)
 }
 
 export function createStack(num = 400): SvgSquareType[] {

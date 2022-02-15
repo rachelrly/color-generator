@@ -15,12 +15,7 @@ export class Hsla {
   a?: number // 0-1
   generateRandom?: () => void
 
-  constructor(
-    h = randomInt(255),
-    s = randomInt(100),
-    l = randomInt(100),
-    a = randomDecimal()
-  ) {
+  constructor(h = 114, s = 80, l = randomInt(50), a = randomDecimal()) {
     this.h = h
     this.s = s
     this.l = l
