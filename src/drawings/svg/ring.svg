@@ -1,0 +1,14 @@
+<svg width="184" height="184" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="Gradient">
+      <stop offset="5%" stop-color="#A8CCFF"/>
+      <stop offset="85%" stop-color="#BECDF8"/>
+    </linearGradient>
+    <pattern id="Ring" x="0" y="0" width=".25" height=".25">
+      <rect x="0" y="0" width="46" height="46" fill="#CCEDFF"/>
+      <circle cx="25" cy="25" r="18" fill="url(#Gradient)" fill-opacity="0.4"/>
+      <circle cx="25" cy="25" r="12" fill="#CCEDFF" fill-opacity="0.9"/>
+    </pattern>
+  </defs>
+  <rect fill="url(#Ring)" stroke="none" width="184" height="184"/>
+</svg>

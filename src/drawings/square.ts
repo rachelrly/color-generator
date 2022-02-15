@@ -1,5 +1,5 @@
-import { setSvg } from './utils'
-import { SvgSquareType, Hsla } from './types'
+import { setSvg } from '../utils'
+import { SvgSquareType, Hsla } from '../types'
 
 export function makeStackedSquare(squares: SvgSquareType[]) {
   // Makes stacked square in dom

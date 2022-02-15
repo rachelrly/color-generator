@@ -1,0 +1,19 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="Gradient1">
+      <stop offset="5%" stop-color="#E0F2F1"/>
+      <stop offset="95%" stop-color="#B2DFDB"/>
+    </linearGradient>
+    <linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="5%" stop-color="#00E5FF"/>
+      <stop offset="95%" stop-color="#40C4FF"/>
+    </linearGradient>
+    <pattern id="Pattern" x="0" y="0" width=".25" height=".25">
+      <rect x="0" y="0" width="50" height="50" fill="#80D8FF"/>
+      <rect x="0" y="0" width="50" height="50" fill="url(#Gradient2)"/>
+      <circle cx="25" cy="25" r="20" fill="#F9FBE7" />
+    </pattern>
+  </defs>
+    <rect x="0" y="0" height="100%" width="100%" fill="white" />
+  <rect fill="url(#Pattern)" stroke="none" width="200" height="200"/>
+</svg>
