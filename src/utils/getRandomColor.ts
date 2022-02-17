@@ -1,5 +1,5 @@
 import type { ColorPropsOptions, ColorProps } from '../types'
-import { getRandomDecimal, getRandomInt } from './num'
+import { getRandomDecimal, getRandomInt } from './getRandom'
 
 export function getRandomColor(options?: ColorPropsOptions): ColorProps {
   if (!options || options === {}) {

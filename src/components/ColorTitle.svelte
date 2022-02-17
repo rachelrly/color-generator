@@ -11,11 +11,11 @@
   <div>
     <svg
       class="mx-2 flex-1 block"
-      width={50}
-      height={50}
+      width={30}
+      height={30}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect height={50} width={50} fill={getColorString(color)} />
+      <rect height={30} width={30} fill={getColorString(color)} />
     </svg>
   </div>
 </div>
