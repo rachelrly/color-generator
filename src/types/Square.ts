@@ -1,18 +1,12 @@
-// For the SVG Square block
-import { ColorStringType, ColorType } from './Color'
+import type { SvgDimension } from './Svg'
 
-export interface SquareColorType {
-  outerSquare: ColorStringType
-  middleSquare: ColorStringType
-  innerSquare: ColorStringType
+export interface SquareProps {
+  x: number
+  y: number
+  height: SvgDimension
+  width: SvgDimension
+  fill: string
+  index?: number
 }
 
-export interface SvgSquareType {
-  x: string
-  y?: string
-  width: string
-  height?: string
-  fill?: string
-  id: string
-  color?: ColorStringType | ColorType
-}
+export type SquareDimensionProps = Omit<SquareProps, 'fill' | 'index'>
