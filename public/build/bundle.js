@@ -1747,7 +1747,7 @@ var app = (function () {
     	add_render_callback(/*onwindowresize*/ ctx[12]);
 
     	colortitle = new ColorTitle({
-    			props: { color: /*current*/ ctx[1] },
+    			props: { color: /*current*/ ctx[2] },
     			$$inline: true
     		});
 
@@ -1765,7 +1765,7 @@ var app = (function () {
     				handleSetValue: /*handleSetValue*/ ctx[6],
     				handleSelectOption: /*handleSelectOption*/ ctx[7],
     				selected: /*option*/ ctx[0],
-    				maxWidth: /*outerWidth*/ ctx[2] - /*step*/ ctx[4]
+    				maxWidth: /*outerWidth*/ ctx[1] - /*step*/ ctx[4]
     			},
     			$$inline: true
     		});
@@ -1780,9 +1780,9 @@ var app = (function () {
     			t1 = space();
     			create_component(controls.$$.fragment);
     			attr_dev(div0, "class", "max-w-screen-md w-full h-full flex flex-col items-center md:mt-2 lg:mt-6");
-    			add_location(div0, file$2, 30, 2, 902);
+    			add_location(div0, file$2, 31, 2, 1025);
     			attr_dev(div1, "class", "w-full h-full p-2 flex flex-col items-center justify-evenly md:p-4 lg:p-6");
-    			add_location(div1, file$2, 27, 0, 809);
+    			add_location(div1, file$2, 28, 0, 932);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1804,14 +1804,14 @@ var app = (function () {
     		},
     		p: function update(ctx, [dirty]) {
     			const colortitle_changes = {};
-    			if (dirty & /*current*/ 2) colortitle_changes.color = /*current*/ ctx[1];
+    			if (dirty & /*current*/ 4) colortitle_changes.color = /*current*/ ctx[2];
     			colortitle.$set(colortitle_changes);
     			const square_changes = {};
     			if (dirty & /*filledSquares*/ 8) square_changes.squares = /*filledSquares*/ ctx[3];
     			square.$set(square_changes);
     			const controls_changes = {};
     			if (dirty & /*option*/ 1) controls_changes.selected = /*option*/ ctx[0];
-    			if (dirty & /*outerWidth*/ 4) controls_changes.maxWidth = /*outerWidth*/ ctx[2] - /*step*/ ctx[4];
+    			if (dirty & /*outerWidth*/ 2) controls_changes.maxWidth = /*outerWidth*/ ctx[1] - /*step*/ ctx[4];
     			controls.$set(controls_changes);
     		},
     		i: function intro(local) {
@@ -1853,15 +1853,15 @@ var app = (function () {
     	let filledSquares;
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('ColorGenerator', slots, []);
+    	let outerWidth; // Screen width (not used)
     	let color = getRandomColor();
-    	let current = color;
+    	let current = color; // Selected color at top of screen
     	let option = 'hue';
-    	let outerWidth;
     	let width = 300;
     	let step = 50;
 
     	function handleSelectColor(i) {
-    		$$invalidate(1, current = filledSquares[i].color);
+    		$$invalidate(2, current = filledSquares[i].color);
     	}
 
     	function handleSetValue(val) {
@@ -1883,7 +1883,7 @@ var app = (function () {
     	});
 
     	function onwindowresize() {
-    		$$invalidate(2, outerWidth = window.outerWidth);
+    		$$invalidate(1, outerWidth = window.outerWidth);
     	}
 
     	$$self.$capture_state = () => ({
@@ -1893,10 +1893,10 @@ var app = (function () {
     		getSquareDimensions,
     		getRandomColor,
     		getPropertyIncrement,
+    		outerWidth,
     		color,
     		current,
     		option,
-    		outerWidth,
     		width,
     		step,
     		handleSelectColor,
@@ -1908,10 +1908,10 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
+    		if ('outerWidth' in $$props) $$invalidate(1, outerWidth = $$props.outerWidth);
     		if ('color' in $$props) $$invalidate(9, color = $$props.color);
-    		if ('current' in $$props) $$invalidate(1, current = $$props.current);
+    		if ('current' in $$props) $$invalidate(2, current = $$props.current);
     		if ('option' in $$props) $$invalidate(0, option = $$props.option);
-    		if ('outerWidth' in $$props) $$invalidate(2, outerWidth = $$props.outerWidth);
     		if ('width' in $$props) $$invalidate(10, width = $$props.width);
     		if ('step' in $$props) $$invalidate(4, step = $$props.step);
     		if ('filledSquares' in $$props) $$invalidate(3, filledSquares = $$props.filledSquares);
@@ -1936,8 +1936,8 @@ var app = (function () {
 
     	return [
     		option,
-    		current,
     		outerWidth,
+    		current,
     		filledSquares,
     		step,
     		handleSelectColor,

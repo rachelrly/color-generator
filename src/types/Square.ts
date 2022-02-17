@@ -10,4 +10,4 @@ export interface SquareProps {
   index?: number
 }
 
-export type SquareDimensionProps = Omit<SquareProps, 'fill' | 'index'>
+export type SquareDimensionProps = Omit<SquareProps, 'color' | 'index'>
