@@ -12,11 +12,12 @@
     SquareDimensionProps,
     SquareProps
   } from '../types'
+  // TODO: prevent user from making squares larger than screen
+  let outerWidth: number // Screen width (not used)
 
   let color = getRandomColor()
-  let current = color
+  let current = color // Selected color at top of screen
   let option: ColorPropKey = 'hue'
-  let outerWidth: number
   let width = 300
   let step = 50
 
