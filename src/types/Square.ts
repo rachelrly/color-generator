@@ -1,5 +1,6 @@
-import type { SvgDimension } from './Svg'
 import type { ColorProps } from './Color'
+
+export type SvgDimension = number | '100%'
 
 export interface SquareProps {
   x: number
