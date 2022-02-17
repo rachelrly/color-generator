@@ -10,10 +10,15 @@ export function incrementValue(
   else return max
 }
 
-export function randomInt(max = 1) {
-  return Math.floor(Math.random() * max)
+// export function randomInt(max = 1) {
+//   return Math.floor(Math.random() * max)
+// }
+
+export function getRandomDecimal(): number {
+  const MIN = 0.2
+  return Math.random() * (1 - MIN) + MIN
 }
 
-export function randomDecimal(): number {
-  return parseFloat(Math.random().toFixed(2))
+export function getRandomInt({ min = 0, max = 255 }): number {
+  return Math.random() * (max - min) + min
 }

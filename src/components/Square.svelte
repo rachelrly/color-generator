@@ -3,7 +3,7 @@
   export let squares: SquareProps[]
 </script>
 
-<div class="flex justify-center">
+<div class="flex justify-center my-2">
   <svg
     class="block"
     width={squares[0]?.width ?? '100%'}

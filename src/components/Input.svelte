@@ -3,13 +3,17 @@
   export let setValue: (val: number) => void
   function handleSetValue(e: any) {
     if (e.target.value) {
-      console.log('RUNNING e.target.value', Number(e.target.value))
       setValue(Number(e.target.value))
     }
   }
 </script>
 
-<fieldset>
-  <label>{label}</label>
-  <input on:blur={handleSetValue} type="text" inputmode="numeric" />
+<fieldset class="w-full flex flex-row justify-between items-center mb-2">
+  <label class="w-12">{label}</label>
+  <input
+    class="flex-1 p-1"
+    on:blur={handleSetValue}
+    type="text"
+    inputmode="numeric"
+  />
 </fieldset>

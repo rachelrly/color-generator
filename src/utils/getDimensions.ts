@@ -1,8 +1,8 @@
 import type { SquareDimensionProps } from '../types'
 
 export function getSquareDimensions(
-  outer: number = 300,
-  step: number = 50
+  outer: number,
+  step: number
 ): SquareDimensionProps[] {
   let squares: SquareDimensionProps[] = []
   let current: number = step
