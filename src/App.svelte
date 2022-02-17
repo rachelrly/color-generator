@@ -1,8 +1,7 @@
 <script lang="ts">
   import Title from './components/Title.svelte'
   import Controls from './components/Controls.svelte'
-  import Square from './components/Square.svelte'
-  import ColorTitle from './components/ColorTitle.svelte'
+  import Display from './components/Display.svelte'
   import {
     getSquareDimensions,
     getRandomColor,
@@ -54,10 +53,7 @@
   <div
     class="w-full h-full p-2 flex flex-col items-center justify-evenly md:p-4 lg:p-6 lg:flex-row"
   >
-    <div class="flex flex-col w-full items-center justify-center flex-1">
-      <ColorTitle color={current} />
-      <Square squares={filledSquares} {handleSelectColor} />
-    </div>
+    <Display squares={filledSquares} {current} {handleSelectColor} />
     <Controls
       {handleRandomColor}
       {handleSelectOption}
