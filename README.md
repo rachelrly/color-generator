@@ -1,6 +1,6 @@
 # [Color Sequence Generator](https://practical-sinoussi-967ca9.netlify.app)
 
-View a live demo of the color sequence generator [here](https://practical-sinoussi-967ca9.netlify.app).
+View a live demo of the color sequence generator [here](https://color-sequence-generator.vercel.app/).
 
 ## Stack
 
