@@ -1207,127 +1207,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (25:2) {:else}
-    function create_else_block(ctx) {
-    	let div;
-    	let h1;
-
-    	const block = {
-    		c: function create() {
-    			div = element("div");
-    			h1 = element("h1");
-    			h1.textContent = "THIS SHOULD NOT BE HAPPENING! YOU SHOULD NEVER SEE THIS SCREEN!!!!";
-    			attr_dev(h1, "class", "text-red-800 text-3xl");
-    			add_location(h1, file$2, 26, 6, 672);
-    			attr_dev(div, "class", "h-full");
-    			add_location(div, file$2, 25, 4, 645);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, h1);
-    		},
-    		p: noop,
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_else_block.name,
-    		type: "else",
-    		source: "(25:2) {:else}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (7:2) {#if squares.length > 0}
-    function create_if_block(ctx) {
-    	let svg;
-    	let svg_width_value;
-    	let svg_height_value;
-    	let each_value = /*squares*/ ctx[0];
-    	validate_each_argument(each_value);
-    	let each_blocks = [];
-
-    	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
-    	}
-
-    	const block = {
-    		c: function create() {
-    			svg = svg_element("svg");
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].c();
-    			}
-
-    			attr_dev(svg, "class", "block");
-    			attr_dev(svg, "width", svg_width_value = /*squares*/ ctx[0][0]?.width ?? '100%');
-    			attr_dev(svg, "height", svg_height_value = /*squares*/ ctx[0][0]?.width ?? '100%');
-    			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
-    			add_location(svg, file$2, 7, 4, 192);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, svg, anchor);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(svg, null);
-    			}
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*squares, getColorString, handleSelectColor*/ 3) {
-    				each_value = /*squares*/ ctx[0];
-    				validate_each_argument(each_value);
-    				let i;
-
-    				for (i = 0; i < each_value.length; i += 1) {
-    					const child_ctx = get_each_context(ctx, each_value, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    					} else {
-    						each_blocks[i] = create_each_block(child_ctx);
-    						each_blocks[i].c();
-    						each_blocks[i].m(svg, null);
-    					}
-    				}
-
-    				for (; i < each_blocks.length; i += 1) {
-    					each_blocks[i].d(1);
-    				}
-
-    				each_blocks.length = each_value.length;
-    			}
-
-    			if (dirty & /*squares*/ 1 && svg_width_value !== (svg_width_value = /*squares*/ ctx[0][0]?.width ?? '100%')) {
-    				attr_dev(svg, "width", svg_width_value);
-    			}
-
-    			if (dirty & /*squares*/ 1 && svg_height_value !== (svg_height_value = /*squares*/ ctx[0][0]?.width ?? '100%')) {
-    				attr_dev(svg, "height", svg_height_value);
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(svg);
-    			destroy_each(each_blocks, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block.name,
-    		type: "if",
-    		source: "(7:2) {#if squares.length > 0}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (14:6) {#each squares as { x, y, height, width, color }}
+    // (13:4) {#each squares as { x, y, height, width, color }}
     function create_each_block(ctx) {
     	let rect;
     	let rect_x_value;
@@ -1354,7 +1234,7 @@ var app = (function () {
     			? getColorString(/*color*/ ctx[7])
     			: null);
 
-    			add_location(rect, file$2, 14, 8, 413);
+    			add_location(rect, file$2, 13, 6, 370);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, rect, anchor);
@@ -1400,7 +1280,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(14:6) {#each squares as { x, y, height, width, color }}",
+    		source: "(13:4) {#each squares as { x, y, height, width, color }}",
     		ctx
     	});
 
@@ -1409,19 +1289,31 @@ var app = (function () {
 
     function create_fragment$2(ctx) {
     	let div;
+    	let svg;
+    	let svg_width_value;
+    	let svg_height_value;
+    	let each_value = /*squares*/ ctx[0];
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
 
-    	function select_block_type(ctx, dirty) {
-    		if (/*squares*/ ctx[0].length > 0) return create_if_block;
-    		return create_else_block;
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
     	}
-
-    	let current_block_type = select_block_type(ctx);
-    	let if_block = current_block_type(ctx);
 
     	const block = {
     		c: function create() {
     			div = element("div");
-    			if_block.c();
+    			svg = svg_element("svg");
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			attr_dev(svg, "class", "block");
+    			attr_dev(svg, "width", svg_width_value = /*squares*/ ctx[0][0]?.width ?? '100%');
+    			attr_dev(svg, "height", svg_height_value = /*squares*/ ctx[0][0]?.width ?? '100%');
+    			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
+    			add_location(svg, file$2, 6, 2, 163);
     			attr_dev(div, "class", "flex justify-center my-2");
     			add_location(div, file$2, 5, 0, 122);
     		},
@@ -1430,26 +1322,50 @@ var app = (function () {
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
-    			if_block.m(div, null);
+    			append_dev(div, svg);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(svg, null);
+    			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
-    				if_block.p(ctx, dirty);
-    			} else {
-    				if_block.d(1);
-    				if_block = current_block_type(ctx);
+    			if (dirty & /*squares, getColorString, handleSelectColor*/ 3) {
+    				each_value = /*squares*/ ctx[0];
+    				validate_each_argument(each_value);
+    				let i;
 
-    				if (if_block) {
-    					if_block.c();
-    					if_block.m(div, null);
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(svg, null);
+    					}
     				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value.length;
+    			}
+
+    			if (dirty & /*squares*/ 1 && svg_width_value !== (svg_width_value = /*squares*/ ctx[0][0]?.width ?? '100%')) {
+    				attr_dev(svg, "width", svg_width_value);
+    			}
+
+    			if (dirty & /*squares*/ 1 && svg_height_value !== (svg_height_value = /*squares*/ ctx[0][0]?.width ?? '100%')) {
+    				attr_dev(svg, "height", svg_height_value);
     			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
-    			if_block.d();
+    			destroy_each(each_blocks, detaching);
     		}
     	};
 
