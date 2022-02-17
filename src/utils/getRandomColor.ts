@@ -5,9 +5,9 @@ export function getRandomColor(options?: ColorPropsOptions): ColorProps {
   if (!options || options === {}) {
     return {
       hue: getRandomInt({ max: 255 }),
-      lightness: getRandomInt({ max: 100 }),
-      saturation: getRandomInt({ max: 100 }),
-      alpha: getRandomDecimal()
+      lightness: getRandomInt({ min: 20, max: 80 }),
+      saturation: getRandomInt({ min: 20, max: 100 }),
+      alpha: 1
     }
   } else {
     // handle option generation

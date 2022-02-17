@@ -12,3 +12,5 @@ export interface ColorPropsOptions
   lightness?: number
   alpha?: number
 }
+
+export type ColorPropKey = keyof ColorProps
