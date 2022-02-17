@@ -6,7 +6,6 @@
   export let handleSetValue: (val: number) => void
   export let handleSelectOption: (opt: ColorPropKey) => void
   export let handleRandomColor: () => void
-  export let maxWidth: number
   export let error: string = ''
   export let selected: ColorPropKey
 </script>
