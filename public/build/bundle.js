@@ -1547,13 +1547,10 @@ var app = (function () {
     function create_fragment$1(ctx) {
     	let div1;
     	let h3;
-
-    	let t0_value = (/*color*/ ctx[0]
-    	? `Current color is ${getColorString(/*color*/ ctx[0])}`
-    	: 'Loading...') + "";
-
     	let t0;
+    	let t1_value = getColorString(/*color*/ ctx[0]) + "";
     	let t1;
+    	let t2;
     	let div0;
     	let svg;
     	let rect;
@@ -1563,27 +1560,24 @@ var app = (function () {
     		c: function create() {
     			div1 = element("div");
     			h3 = element("h3");
-    			t0 = text(t0_value);
-    			t1 = space();
+    			t0 = text("Current color is ");
+    			t1 = text(t1_value);
+    			t2 = space();
     			div0 = element("div");
     			svg = svg_element("svg");
     			rect = svg_element("rect");
     			attr_dev(h3, "class", "text-gray-400 text-center");
     			add_location(h3, file$1, 5, 2, 172);
-    			attr_dev(rect, "height", 50);
-    			attr_dev(rect, "width", 50);
-
-    			attr_dev(rect, "fill", rect_fill_value = /*color*/ ctx[0]
-    			? getColorString(/*color*/ ctx[0])
-    			: 'none');
-
-    			add_location(rect, file$1, 15, 6, 429);
+    			attr_dev(rect, "height", 30);
+    			attr_dev(rect, "width", 30);
+    			attr_dev(rect, "fill", rect_fill_value = getColorString(/*color*/ ctx[0]));
+    			add_location(rect, file$1, 15, 6, 401);
     			attr_dev(svg, "class", "mx-2 flex-1 block");
-    			attr_dev(svg, "width", 50);
-    			attr_dev(svg, "height", 50);
+    			attr_dev(svg, "width", 30);
+    			attr_dev(svg, "height", 30);
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
-    			add_location(svg, file$1, 9, 4, 304);
-    			add_location(div0, file$1, 8, 2, 294);
+    			add_location(svg, file$1, 9, 4, 276);
+    			add_location(div0, file$1, 8, 2, 266);
     			attr_dev(div1, "class", "flex flex-row items-center justify-between w-full max-w-screen-sm");
     			add_location(div1, file$1, 4, 0, 90);
     		},
@@ -1594,19 +1588,16 @@ var app = (function () {
     			insert_dev(target, div1, anchor);
     			append_dev(div1, h3);
     			append_dev(h3, t0);
-    			append_dev(div1, t1);
+    			append_dev(h3, t1);
+    			append_dev(div1, t2);
     			append_dev(div1, div0);
     			append_dev(div0, svg);
     			append_dev(svg, rect);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*color*/ 1 && t0_value !== (t0_value = (/*color*/ ctx[0]
-    			? `Current color is ${getColorString(/*color*/ ctx[0])}`
-    			: 'Loading...') + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*color*/ 1 && t1_value !== (t1_value = getColorString(/*color*/ ctx[0]) + "")) set_data_dev(t1, t1_value);
 
-    			if (dirty & /*color*/ 1 && rect_fill_value !== (rect_fill_value = /*color*/ ctx[0]
-    			? getColorString(/*color*/ ctx[0])
-    			: 'none')) {
+    			if (dirty & /*color*/ 1 && rect_fill_value !== (rect_fill_value = getColorString(/*color*/ ctx[0]))) {
     				attr_dev(rect, "fill", rect_fill_value);
     			}
     		},
