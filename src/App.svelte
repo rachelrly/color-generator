@@ -6,18 +6,14 @@
   import {
     getSquareDimensions,
     getRandomColor,
-    getFilledSquares
+    getFilledSquares,
+    getData,
+    updateData
   } from './utils'
-  import type {
-    ColorPropKey,
-    ColorProps,
-    ControlOptions,
-    SquareDimensionProps,
-    SquareProps
-  } from './types'
+  import type { ColorPropKey, ColorProps, ControlOptions } from './types'
+  import { afterUpdate, onMount } from 'svelte'
 
-  let base: ColorProps = getRandomColor()
-
+  export let base: ColorProps = getRandomColor()
   export let options: ControlOptions = {
     width: 300,
     step: 50,
@@ -28,13 +24,21 @@
   $: filledSquares = getFilledSquares(squares, base, options)
   $: current = filledSquares[0].color // Selected color at top of screen
 
+  onMount(() => {
+    const data = getData()
+    if (data?.base && data?.options) {
+      base = data.base
+      options = data.options
+    }
+  })
+
+  afterUpdate(() => {
+    updateData({ base, options })
+  })
+
   function handleSelectColor(color: ColorProps) {
     current = color
   }
-
-  // function handleSetValue(val: number) {
-  //   width = val
-  // }
 
   function handleSelectOption(prop: ColorPropKey) {
     options = { ...options, property: prop }
@@ -51,9 +55,7 @@
     class="w-full h-full p-2 flex flex-col items-center justify-evenly md:p-4 lg:p-6 lg:flex-row"
   >
     <div class="flex flex-col w-full items-center justify-center flex-1">
-      {#if current}
-        <ColorTitle color={current} />
-      {/if}
+      <ColorTitle color={current} />
       <Square squares={filledSquares} {handleSelectColor} />
     </div>
     <Controls
