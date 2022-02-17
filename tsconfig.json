@@ -1,19 +1,33 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Node 16",
+  "display": "Svelte",
+  "_version": "3.0.0",
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/*", "__sapper__/*", "public/*"],
   "compilerOptions": {
-    "lib": ["es2021", "dom", "dom.iterable"],
-    "module": "commonjs",
-    "target": "es2021",
-    "strict": true,
-    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "target": "es2017",
+    /**
+      Svelte Preprocess cannot figure out whether you have a value or a type, so tell TypeScript
+      to enforce using `import type` instead of `import` for Types.
+     */
+    "importsNotUsedAsValues": "error",
+    /**
+      TypeScript doesn't know about import usages in the template because it only sees the
+      script of a Svelte file. Therefore preserve all value imports. Requires TS 4.5 or higher.
+     */
+    "preserveValueImports": true,
+    "isolatedModules": true,
+    /**
+      To have warnings/errors of the Svelte compiler at the correct position,
+      enable source maps by default.
+     */
+    "sourceMap": true,
+
+    "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "rootDir": ".",
-    "outDir": "dist",
-    "sourceMap": true
-  },
-  "include": ["src/**/*", "test/**/*", "tests/jest.config.ts"],
-  "exclude": ["node_modules"]
+    "forceConsistentCasingInFileNames": true
+  }
 }
+

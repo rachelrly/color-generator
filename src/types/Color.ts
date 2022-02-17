@@ -1,16 +1,16 @@
-import { Hsla, HslColorType } from './Hsla'
-
-export interface ColorPropType {
-  color: HslColorType
-  variant1: HslColorType // Light for HSL, but could be different for RGB
-  variant2: HslColorType // Dark for HSL, but could be different for RGB
-  text?: '#000' // Recommended text color (#000 or #fff)
+export interface ColorProps {
+  hue: number // 0-255
+  saturation: number // 0-100%
+  lightness: number // 0-100%
+  alpha: number // 0-1
 }
 
-export type ColorSetType = ColorPropType[]
+export interface ColorPropsOptions
+  extends Omit<ColorProps, 'hue' | 'saturation' | 'lightness' | 'alpha'> {
+  hue?: number
+  saturation?: number
+  lightness?: number
+  alpha?: number
+}
 
-export type SetType = 'complementary' | 'triadic' | 'analogous'
-
-export type ColorStringType = string //TODO: Validate this
-
-export type ColorType = Hsla
+export type ColorPropKey = keyof ColorProps

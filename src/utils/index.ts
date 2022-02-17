@@ -1,2 +1,7 @@
 export * from './num'
 export * from './constants'
+export * from './getDimensions'
+export * from './getColors'
+export * from './getColorString'
+export * from './getRandomColor'
+export * from './getColorIncrement'
