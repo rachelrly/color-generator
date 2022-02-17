@@ -25,6 +25,10 @@
       {/each}
     </svg>
   {:else}
-    <div class="h-full" />
+    <div class="h-full">
+      <h1 class="text-red-800 text-3xl">
+        THIS SHOULD NOT BE HAPPENING! YOU SHOULD NEVER SEE THIS SCREEN!!!!
+      </h1>
+    </div>
   {/if}
 </div>

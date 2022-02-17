@@ -14,3 +14,9 @@ export interface ColorPropsOptions
 }
 
 export type ColorPropKey = keyof ColorProps
+
+export interface ControlOptions {
+  property: ColorPropKey
+  width: number
+  step: number
+}

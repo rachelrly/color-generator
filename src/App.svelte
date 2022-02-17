@@ -6,39 +6,38 @@
   import {
     getSquareDimensions,
     getRandomColor,
-    getPropertyIncrement
+    getFilledSquares
   } from './utils'
   import type {
     ColorPropKey,
     ColorProps,
+    ControlOptions,
     SquareDimensionProps,
     SquareProps
   } from './types'
 
-  export let base: ColorProps
-  $: current = base // Selected color at top of screen
-  export let option: ColorPropKey = 'hue'
-  export let width = 300
-  export let step = 50
+  let base: ColorProps = getRandomColor()
 
-  $: squares = getSquareDimensions(width, step)
-  $: filledSquares = squares.map(
-    (sq: SquareDimensionProps): SquareProps => ({
-      ...sq,
-      color: getPropertyIncrement(base, option)
-    })
-  )
+  export let options: ControlOptions = {
+    width: 300,
+    step: 50,
+    property: 'hue'
+  }
+
+  $: squares = getSquareDimensions(options.width, options.step)
+  $: filledSquares = getFilledSquares(squares, base, options)
+  $: current = filledSquares[0].color // Selected color at top of screen
 
   function handleSelectColor(color: ColorProps) {
     current = color
   }
 
-  function handleSetValue(val: number) {
-    width = val
-  }
+  // function handleSetValue(val: number) {
+  //   width = val
+  // }
 
-  function handleSelectOption(opt: ColorPropKey) {
-    option = opt
+  function handleSelectOption(prop: ColorPropKey) {
+    options = { ...options, property: prop }
   }
 
   function handleRandomColor() {
@@ -49,17 +48,18 @@
 <main class="flex flex-col items-center h-screen">
   <Title />
   <div
-    class="w-full h-full p-2 flex flex-col items-center justify-evenly md:p-4 lg:p-6"
+    class="w-full h-full p-2 flex flex-col items-center justify-evenly md:p-4 lg:p-6 lg:flex-row"
   >
-    {#if current}
-      <ColorTitle color={current} />
-    {/if}
-    <Square squares={filledSquares} {handleSelectColor} />
+    <div class="flex flex-col w-full items-center justify-center flex-1">
+      {#if current}
+        <ColorTitle color={current} />
+      {/if}
+      <Square squares={filledSquares} {handleSelectColor} />
+    </div>
     <Controls
       {handleRandomColor}
-      {handleSetValue}
       {handleSelectOption}
-      selected={option}
+      selected={options.property}
     />
   </div>
 </main>
