@@ -665,6 +665,7 @@ var app = (function () {
     		c: function create() {
     			button = element("button");
     			t = text(/*text*/ ctx[0]);
+    			attr_dev(button, "type", "button");
     			attr_dev(button, "class", button_class_value = "p-1 m-1 w-24 " + (/*selected*/ ctx[1] && 'bg-gray-800 text-white border-gray-800'));
     			add_location(button, file$5, 5, 0, 95);
     		},
@@ -1051,10 +1052,10 @@ var app = (function () {
     const file$3 = "src/components/Controls.svelte";
 
     function create_fragment$3(ctx) {
-    	let form;
+    	let div1;
     	let h3;
     	let t1;
-    	let div;
+    	let div0;
     	let span;
     	let t2;
     	let t3;
@@ -1101,11 +1102,11 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			form = element("form");
+    			div1 = element("div");
     			h3 = element("h3");
     			h3.textContent = "Change the settings";
     			t1 = space();
-    			div = element("div");
+    			div0 = element("div");
     			span = element("span");
     			t2 = text(/*error*/ ctx[3]);
     			t3 = space();
@@ -1117,31 +1118,31 @@ var app = (function () {
     			t6 = space();
     			create_component(input1.$$.fragment);
     			attr_dev(h3, "class", "text-xl");
-    			add_location(h3, file$3, 11, 2, 354);
-    			add_location(span, file$3, 13, 4, 423);
-    			attr_dev(div, "class", "h-8");
-    			add_location(div, file$3, 12, 2, 401);
-    			attr_dev(form, "class", "flex flex-col items-center justify-center p-2 w-full");
-    			add_location(form, file$3, 10, 0, 283);
+    			add_location(h3, file$3, 11, 2, 353);
+    			add_location(span, file$3, 13, 4, 422);
+    			attr_dev(div0, "class", "h-8");
+    			add_location(div0, file$3, 12, 2, 400);
+    			attr_dev(div1, "class", "flex flex-col items-center justify-center p-2 w-full");
+    			add_location(div1, file$3, 10, 0, 283);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, form, anchor);
-    			append_dev(form, h3);
-    			append_dev(form, t1);
-    			append_dev(form, div);
-    			append_dev(div, span);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, h3);
+    			append_dev(div1, t1);
+    			append_dev(div1, div0);
+    			append_dev(div0, span);
     			append_dev(span, t2);
-    			append_dev(form, t3);
-    			mount_component(button, form, null);
-    			append_dev(form, t4);
-    			mount_component(buttonchain, form, null);
-    			append_dev(form, t5);
-    			mount_component(input0, form, null);
-    			append_dev(form, t6);
-    			mount_component(input1, form, null);
+    			append_dev(div1, t3);
+    			mount_component(button, div1, null);
+    			append_dev(div1, t4);
+    			mount_component(buttonchain, div1, null);
+    			append_dev(div1, t5);
+    			mount_component(input0, div1, null);
+    			append_dev(div1, t6);
+    			mount_component(input1, div1, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -1176,7 +1177,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(form);
+    			if (detaching) detach_dev(div1);
     			destroy_component(button);
     			destroy_component(buttonchain);
     			destroy_component(input0);
@@ -1330,7 +1331,6 @@ var app = (function () {
     	}
     }
 
-    // export function incrementValue(
     function getRandomInt({ min = 0, max = 255 }) {
         return Math.random() * (max - min) + min;
     }
@@ -1411,7 +1411,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			attr_dev(div, "class", "h-full");
-    			add_location(div, file$2, 25, 4, 630);
+    			add_location(div, file$2, 25, 4, 645);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1434,7 +1434,7 @@ var app = (function () {
     }
 
     // (7:2) {#if squares.length > 0}
-    function create_if_block(ctx) {
+    function create_if_block$1(ctx) {
     	let svg;
     	let svg_width_value;
     	let svg_height_value;
@@ -1508,7 +1508,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block.name,
+    		id: create_if_block$1.name,
     		type: "if",
     		source: "(7:2) {#if squares.length > 0}",
     		ctx
@@ -1539,7 +1539,11 @@ var app = (function () {
     			attr_dev(rect, "y", rect_y_value = /*y*/ ctx[4]);
     			attr_dev(rect, "height", rect_height_value = /*height*/ ctx[5]);
     			attr_dev(rect, "width", rect_width_value = /*width*/ ctx[6]);
-    			attr_dev(rect, "fill", rect_fill_value = getColorString(/*color*/ ctx[7]));
+
+    			attr_dev(rect, "fill", rect_fill_value = /*color*/ ctx[7]
+    			? getColorString(/*color*/ ctx[7])
+    			: null);
+
     			add_location(rect, file$2, 14, 8, 413);
     		},
     		m: function mount(target, anchor) {
@@ -1569,7 +1573,9 @@ var app = (function () {
     				attr_dev(rect, "width", rect_width_value);
     			}
 
-    			if (dirty & /*squares*/ 1 && rect_fill_value !== (rect_fill_value = getColorString(/*color*/ ctx[7]))) {
+    			if (dirty & /*squares*/ 1 && rect_fill_value !== (rect_fill_value = /*color*/ ctx[7]
+    			? getColorString(/*color*/ ctx[7])
+    			: null)) {
     				attr_dev(rect, "fill", rect_fill_value);
     			}
     		},
@@ -1595,7 +1601,7 @@ var app = (function () {
     	let div;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*squares*/ ctx[0].length > 0) return create_if_block;
+    		if (/*squares*/ ctx[0].length > 0) return create_if_block$1;
     		return create_else_block;
     	}
 
@@ -1874,23 +1880,66 @@ var app = (function () {
 
     const file = "src/App.svelte";
 
+    // (32:4) {#if current}
+    function create_if_block(ctx) {
+    	let colortitle;
+    	let current;
+
+    	colortitle = new ColorTitle({
+    			props: { color: /*current*/ ctx[1] },
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(colortitle.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(colortitle, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const colortitle_changes = {};
+    			if (dirty & /*current*/ 2) colortitle_changes.color = /*current*/ ctx[1];
+    			colortitle.$set(colortitle_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(colortitle.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(colortitle.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(colortitle, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(32:4) {#if current}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
     function create_fragment(ctx) {
     	let main;
     	let title;
     	let t0;
     	let div;
-    	let colortitle;
     	let t1;
     	let square;
     	let t2;
     	let controls;
     	let current;
     	title = new Title({ $$inline: true });
-
-    	colortitle = new ColorTitle({
-    			props: { color: /*current*/ ctx[1] },
-    			$$inline: true
-    		});
+    	let if_block = /*current*/ ctx[1] && create_if_block(ctx);
 
     	square = new Square({
     			props: {
@@ -1916,15 +1965,15 @@ var app = (function () {
     			create_component(title.$$.fragment);
     			t0 = space();
     			div = element("div");
-    			create_component(colortitle.$$.fragment);
+    			if (if_block) if_block.c();
     			t1 = space();
     			create_component(square.$$.fragment);
     			t2 = space();
     			create_component(controls.$$.fragment);
     			attr_dev(div, "class", "w-full h-full p-2 flex flex-col items-center justify-evenly md:p-4 lg:p-6");
-    			add_location(div, file, 30, 2, 962);
+    			add_location(div, file, 28, 2, 929);
     			attr_dev(main, "class", "flex flex-col items-center h-screen");
-    			add_location(main, file, 28, 0, 897);
+    			add_location(main, file, 26, 0, 864);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1934,7 +1983,7 @@ var app = (function () {
     			mount_component(title, main, null);
     			append_dev(main, t0);
     			append_dev(main, div);
-    			mount_component(colortitle, div, null);
+    			if (if_block) if_block.m(div, null);
     			append_dev(div, t1);
     			mount_component(square, div, null);
     			append_dev(div, t2);
@@ -1942,9 +1991,29 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			const colortitle_changes = {};
-    			if (dirty & /*current*/ 2) colortitle_changes.color = /*current*/ ctx[1];
-    			colortitle.$set(colortitle_changes);
+    			if (/*current*/ ctx[1]) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty & /*current*/ 2) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(div, t1);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
+
     			const square_changes = {};
     			if (dirty & /*filledSquares*/ 4) square_changes.squares = /*filledSquares*/ ctx[2];
     			square.$set(square_changes);
@@ -1955,14 +2024,14 @@ var app = (function () {
     		i: function intro(local) {
     			if (current) return;
     			transition_in(title.$$.fragment, local);
-    			transition_in(colortitle.$$.fragment, local);
+    			transition_in(if_block);
     			transition_in(square.$$.fragment, local);
     			transition_in(controls.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(title.$$.fragment, local);
-    			transition_out(colortitle.$$.fragment, local);
+    			transition_out(if_block);
     			transition_out(square.$$.fragment, local);
     			transition_out(controls.$$.fragment, local);
     			current = false;
@@ -1970,7 +2039,7 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(main);
     			destroy_component(title);
-    			destroy_component(colortitle);
+    			if (if_block) if_block.d();
     			destroy_component(square);
     			destroy_component(controls);
     		}
@@ -1988,12 +2057,12 @@ var app = (function () {
     }
 
     function instance($$self, $$props, $$invalidate) {
+    	let current;
     	let squares;
     	let filledSquares;
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
-    	let { color } = $$props;
-    	let { current = color } = $$props;
+    	let { base } = $$props;
     	let { option = 'hue' } = $$props;
     	let { width = 300 } = $$props;
     	let { step = 50 } = $$props;
@@ -2011,18 +2080,17 @@ var app = (function () {
     	}
 
     	function handleRandomColor() {
-    		$$invalidate(7, color = getRandomColor());
+    		$$invalidate(7, base = getRandomColor());
     	}
 
-    	const writable_props = ['color', 'current', 'option', 'width', 'step'];
+    	const writable_props = ['base', 'option', 'width', 'step'];
 
     	Object_1.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
     	$$self.$$set = $$props => {
-    		if ('color' in $$props) $$invalidate(7, color = $$props.color);
-    		if ('current' in $$props) $$invalidate(1, current = $$props.current);
+    		if ('base' in $$props) $$invalidate(7, base = $$props.base);
     		if ('option' in $$props) $$invalidate(0, option = $$props.option);
     		if ('width' in $$props) $$invalidate(8, width = $$props.width);
     		if ('step' in $$props) $$invalidate(9, step = $$props.step);
@@ -2036,8 +2104,7 @@ var app = (function () {
     		getSquareDimensions,
     		getRandomColor,
     		getPropertyIncrement,
-    		color,
-    		current,
+    		base,
     		option,
     		width,
     		step,
@@ -2045,16 +2112,17 @@ var app = (function () {
     		handleSetValue,
     		handleSelectOption,
     		handleRandomColor,
+    		current,
     		squares,
     		filledSquares
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('color' in $$props) $$invalidate(7, color = $$props.color);
-    		if ('current' in $$props) $$invalidate(1, current = $$props.current);
+    		if ('base' in $$props) $$invalidate(7, base = $$props.base);
     		if ('option' in $$props) $$invalidate(0, option = $$props.option);
     		if ('width' in $$props) $$invalidate(8, width = $$props.width);
     		if ('step' in $$props) $$invalidate(9, step = $$props.step);
+    		if ('current' in $$props) $$invalidate(1, current = $$props.current);
     		if ('squares' in $$props) $$invalidate(10, squares = $$props.squares);
     		if ('filledSquares' in $$props) $$invalidate(2, filledSquares = $$props.filledSquares);
     	};
@@ -2064,16 +2132,18 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*base*/ 128) {
+    			$$invalidate(1, current = base); // Selected color at top of screen
+    		}
+
     		if ($$self.$$.dirty & /*width, step*/ 768) {
     			$$invalidate(10, squares = getSquareDimensions(width, step));
     		}
 
-    		if ($$self.$$.dirty & /*color, squares, option*/ 1153) {
-    			$$invalidate(2, filledSquares = color
-    			? squares.map(sq => Object.assign(Object.assign({}, sq), {
-    					color: getPropertyIncrement(color, option)
-    				}))
-    			: []);
+    		if ($$self.$$.dirty & /*squares, base, option*/ 1153) {
+    			$$invalidate(2, filledSquares = squares.map(sq => Object.assign(Object.assign({}, sq), {
+    				color: getPropertyIncrement(base, option)
+    			})));
     		}
     	};
 
@@ -2085,7 +2155,7 @@ var app = (function () {
     		handleSetValue,
     		handleSelectOption,
     		handleRandomColor,
-    		color,
+    		base,
     		width,
     		step,
     		squares
@@ -2095,14 +2165,7 @@ var app = (function () {
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-
-    		init(this, options, instance, create_fragment, safe_not_equal, {
-    			color: 7,
-    			current: 1,
-    			option: 0,
-    			width: 8,
-    			step: 9
-    		});
+    		init(this, options, instance, create_fragment, safe_not_equal, { base: 7, option: 0, width: 8, step: 9 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -2114,24 +2177,16 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*color*/ ctx[7] === undefined && !('color' in props)) {
-    			console.warn("<App> was created without expected prop 'color'");
+    		if (/*base*/ ctx[7] === undefined && !('base' in props)) {
+    			console.warn("<App> was created without expected prop 'base'");
     		}
     	}
 
-    	get color() {
+    	get base() {
     		throw new Error("<App>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set color(value) {
-    		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get current() {
-    		throw new Error("<App>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set current(value) {
+    	set base(value) {
     		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -2163,7 +2218,7 @@ var app = (function () {
     const app = new App({
         target: document.body,
         props: {
-            color: getRandomColor()
+            base: getRandomColor()
         }
     });
 

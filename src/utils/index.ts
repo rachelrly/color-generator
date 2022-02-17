@@ -1,6 +1,5 @@
-export * from './num'
+export * from './getRandom'
 export * from './getDimensions'
-export * from './getColors'
 export * from './getColorString'
 export * from './getRandomColor'
 export * from './getColorIncrement'

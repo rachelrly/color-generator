@@ -10,7 +10,7 @@
   export let selected: ColorPropKey
 </script>
 
-<form class=" flex flex-col items-center justify-center p-2 w-full">
+<div class=" flex flex-col items-center justify-center p-2 w-full">
   <h3 class="text-xl">Change the settings</h3>
   <div class="h-8">
     <span>{error}</span>
@@ -19,4 +19,4 @@
   <ButtonChain {handleSelectOption} selectedOption={selected} />
   <Input label="width" setValue={handleSetValue} />
   <Input label="step" setValue={handleSetValue} />
-</form>
+</div>

@@ -19,7 +19,7 @@
           {y}
           {height}
           {width}
-          fill={getColorString(color)}
+          fill={color ? getColorString(color) : null}
           on:click|self={() => handleSelectColor(color)}
         />
       {/each}

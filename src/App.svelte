@@ -15,21 +15,19 @@
     SquareProps
   } from './types'
 
-  export let color: ColorProps
-  export let current = color // Selected color at top of screen
+  export let base: ColorProps
+  $: current = base // Selected color at top of screen
   export let option: ColorPropKey = 'hue'
   export let width = 300
   export let step = 50
 
   $: squares = getSquareDimensions(width, step)
-  $: filledSquares = color
-    ? squares.map(
-        (sq: SquareDimensionProps): SquareProps => ({
-          ...sq,
-          color: getPropertyIncrement(color, option)
-        })
-      )
-    : []
+  $: filledSquares = squares.map(
+    (sq: SquareDimensionProps): SquareProps => ({
+      ...sq,
+      color: getPropertyIncrement(base, option)
+    })
+  )
 
   function handleSelectColor(color: ColorProps) {
     current = color
@@ -44,7 +42,7 @@
   }
 
   function handleRandomColor() {
-    color = getRandomColor()
+    base = getRandomColor()
   }
 </script>
 
@@ -53,7 +51,9 @@
   <div
     class="w-full h-full p-2 flex flex-col items-center justify-evenly md:p-4 lg:p-6"
   >
-    <ColorTitle color={current} />
+    {#if current}
+      <ColorTitle color={current} />
+    {/if}
     <Square squares={filledSquares} {handleSelectColor} />
     <Controls
       {handleRandomColor}
