@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { SquareProps } from '../types'
+  import { getColorString } from '../utils'
   export let squares: SquareProps[]
 </script>
 
@@ -10,8 +11,8 @@
     height={squares[0]?.width ?? '100%'}
     xmlns="http://www.w3.org/2000/svg"
   >
-    {#each squares as { x, y, height, width, fill }}
-      <rect {x} {y} {height} {width} {fill} stroke="black" />
+    {#each squares as { x, y, height, width, color }}
+      <rect {x} {y} {height} {width} fill={getColorString(color)} />
     {/each}
   </svg>
 </div>

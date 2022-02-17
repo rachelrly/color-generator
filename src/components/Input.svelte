@@ -9,8 +9,9 @@
 </script>
 
 <fieldset class="w-full flex flex-row justify-between items-center mb-2">
-  <label class="w-12">{label}</label>
+  <label class="w-12" for={label}>{label}</label>
   <input
+    name={label}
     class="flex-1 p-1"
     on:blur={handleSetValue}
     type="text"

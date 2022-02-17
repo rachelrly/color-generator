@@ -1,11 +1,12 @@
 import type { SvgDimension } from './Svg'
+import type { ColorProps } from './Color'
 
 export interface SquareProps {
   x: number
   y: number
   height: SvgDimension
   width: SvgDimension
-  fill: string
+  color: ColorProps
   index?: number
 }
 
