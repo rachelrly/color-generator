@@ -1,21 +1,18 @@
 <script lang="ts">
-  import type { ColorProps } from '../types'
+  import ColorSwatch from './ColorSwatch.svelte'
+  import type { ColorProps, SwatchSize } from '../types'
   import { getColorString } from '../utils'
   export let color: ColorProps
+  export let caption: string = ''
+  export let swatchSize: SwatchSize
 </script>
 
-<div class="flex flex-row items-center justify-between w-full max-w-screen-sm">
+<div
+  class="flex flex-row items-center justify-between {caption &&
+    'w-full'} max-w-screen-sm"
+>
   <h3 class="text-gray-400 text-center">
-    Current color is {getColorString(color)}
+    {caption ?? ''}{getColorString(color)}
   </h3>
-  <div>
-    <svg
-      class="mx-2 flex-1 block"
-      width={30}
-      height={30}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect height={30} width={30} fill={getColorString(color)} />
-    </svg>
-  </div>
+  <ColorSwatch {color} size={swatchSize} />
 </div>
