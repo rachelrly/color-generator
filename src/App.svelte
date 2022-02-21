@@ -14,8 +14,8 @@
   import type { ColorPropKey, ColorProps, ControlOptions } from './types'
 
   const row = new Array(10).fill({})
+  export let error: string = ''
   export let base: ColorProps = getRandomColor()
-  $: console.log('THIS IS MY BASE AFTER CHANGE', base)
   export let options: ControlOptions = {
     square: { width: 300, step: 50 },
     display: 'square',
@@ -59,11 +59,18 @@
   }
 
   function handleSetColorProp(input: string, key: ColorPropKey) {
-    console.log('RUNNING SET COLOR PROP WOOO', { input, key })
-    const num = parseFloat(input)
-    if (num >= KEY_LIMITS[key][0] && num <= KEY_LIMITS[key][1]) {
-      console.log('SETTING BASE OR WHATEVER')
-      base = { ...base, [key]: num }
+    if (input === '') return
+    const num = Number(input)
+    if (!num) {
+      error = 'Please enter a number'
+    } else {
+      const keyLimit = KEY_LIMITS[key]
+      if (num >= keyLimit[0] && num <= keyLimit[1]) {
+        base = { ...base, [key]: num }
+        error = ''
+      } else {
+        error = `Please enter a ${key} between ${keyLimit[0]} and ${keyLimit[1]}`
+      }
     }
   }
 </script>
@@ -75,6 +82,7 @@
   >
     <Sequence {sequence} {current} {handleSelectColor} />
     <Controls
+      {error}
       {handleRandomColor}
       {handleSelectColorKey}
       {handleToggleDisplayType}

@@ -8,6 +8,7 @@
   function setValueOnEnter(e: any) {
     if (e.key === 'Enter') {
       setValue()
+      value = ''
     }
   }
 </script>
@@ -22,5 +23,6 @@
     bind:value
     type="text"
     inputmode="numeric"
+    maxlength="3"
   />
 </fieldset>
