@@ -7,9 +7,16 @@
     getRandomColor,
     getFilledSequence,
     getData,
-    updateData
+    updateData,
+    isDisplayType
   } from './utils'
-  import type { ColorPropKey, ColorProps, ControlOptions } from './types'
+  import type {
+    ColorPropKey,
+    ColorProps,
+    ControlOptions,
+    SquareProps
+  } from './types'
+
   import { afterUpdate, onMount } from 'svelte'
 
   export let base: ColorProps = getRandomColor()
@@ -19,12 +26,10 @@
     property: 'hue'
   }
 
-  $: squares = getSquareDimensions(options?.square.width, options?.square.step)
-  $: sequence = new Array(options.row.length).fill({})
-
-  $: filled = getFilledSequence(sequence, base, options)
-  // DO MORE WORK TO DETACH FILLED LINGO FROM SQUARE LINGO
-  $: current = filled[0].color // Selected color at top of screen
+  $: list = getSquareDimensions(options?.square.width, options?.square.step)
+  $: isDisplayType(list[0], 'x')
+  $: sequence = getFilledSequence(list, base, options)
+  $: current = sequence[0].color // Selected color at top of screen
 
   onMount(() => {
     const data = getData()
@@ -56,13 +61,7 @@
   <div
     class="w-full h-full p-2 flex flex-col items-center justify-evenly md:p-4 lg:p-6 lg:flex-row"
   >
-    <Display
-      squares={filled}
-      {sequence}
-      {current}
-      {handleSelectColor}
-      isRow={true}
-    />
+    <Display {sequence} {current} {handleSelectColor} />
     <Controls
       {handleRandomColor}
       {handleSelectOption}
