@@ -2,7 +2,7 @@
   import { afterUpdate, onMount } from 'svelte'
   import Title from './components/Title.svelte'
   import Controls from './components/Controls.svelte'
-  import Display from './components/Display.svelte'
+  import Sequence from './components/Sequence.svelte'
   import {
     getRandomColor,
     getFilledSequence,
@@ -63,12 +63,12 @@
   }
 </script>
 
-<main class="flex flex-col items-center h-screen">
+<main class="flex flex-col items-center h-min-screen">
   <Title />
   <div
-    class="w-full h-full p-2 flex flex-col items-center justify-around md:p-4 lg:p-6 lg:flex-row"
+    class="w-full h-full p-2 flex flex-col-reverse items-center md:p-4 lg:p-6 lg:pt-14 lg:flex-row lg:justify-evenly"
   >
-    <Display {sequence} {current} {handleSelectColor} />
+    <Sequence {sequence} {current} {handleSelectColor} />
     <Controls
       {handleRandomColor}
       {handleSelectColorKey}

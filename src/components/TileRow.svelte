@@ -4,8 +4,10 @@
   export let sequence: SequenceItem[]
 </script>
 
-<div class="flex flex-col items-center justify-center h-full">
+<div class="flex flex-col items-center justify-center">
   {#each sequence as tile}
-    <ColorTitle color={tile.color} swatchSize="lg" />
+    {#if tile.color.lightness < 100}
+      <ColorTitle color={tile.color} swatchSize="lg" />
+    {/if}
   {/each}
 </div>

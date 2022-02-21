@@ -11,14 +11,15 @@
   export let selected: ColorPropKey
 </script>
 
-<div class="flex-1 flex flex-col items-center justify-center p-2 ">
-  <h3 class="text-xl">Change the settings</h3>
+<div class="flex flex-col mb-6 items-center md:mb-10">
   <div class="h-8">
     <span>{error}</span>
   </div>
-  <Button text="new color" onClick={handleRandomColor} />
-  <Button text="display" onClick={handleToggleDisplayType} />
-
+  <h3 class="text-xl mb-2">Change the settings</h3>
+  <div>
+    <Button text="new color" onClick={handleRandomColor} />
+    <Button text="display" onClick={handleToggleDisplayType} />
+  </div>
   <ButtonChain
     handleSelectOption={handleSelectColorKey}
     selectedOption={selected}

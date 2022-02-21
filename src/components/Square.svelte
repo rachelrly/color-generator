@@ -16,14 +16,16 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     {#each squares as { display, color }}
-      <rect
-        x={display.x}
-        y={display.y}
-        height={display.height}
-        width={display.width}
-        fill={color ? getColorString(color) : null}
-        on:click|self={() => handleSelectColor(color)}
-      />
+      {#if color.lightness < 100}
+        <rect
+          x={display.x}
+          y={display.y}
+          height={display.height}
+          width={display.width}
+          fill={color ? getColorString(color) : null}
+          on:click|self={() => handleSelectColor(color)}
+        />
+      {/if}
     {/each}
   </svg>
 </div>

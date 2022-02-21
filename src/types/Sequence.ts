@@ -5,7 +5,9 @@ export interface KeyValue<T> {
   string: T
 }
 
-export type DisplayProps = SquareProps | { type: 'row' } // TODO: Make real row optinos
+// The empty object represents row display,
+// which only uses data from the color prop atm
+export type DisplayProps = SquareProps | {}
 
 export interface SequenceItem {
   id?: string
@@ -16,7 +18,3 @@ export interface SequenceItem {
 export interface SquareSequenceItem extends Omit<SequenceItem, 'display'> {
   display: SquareProps
 }
-
-// export interface RowSequenceItem extends Omit<SequenceItem, 'display'> {
-//   display: { type: 'row' }
-// }
