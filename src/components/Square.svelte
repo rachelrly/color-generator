@@ -4,7 +4,7 @@
   export let sequence: SequenceItem[]
   // We already know this will be a display square, but the ts compiler doesn't
   //    because it is validated in a nested prop
-  export let squares: SquareSequenceItem[] = sequence as SquareSequenceItem[]
+  $: squares = sequence as SquareSequenceItem[]
   export let handleSelectColor: (color: ColorProps) => void
 </script>
 

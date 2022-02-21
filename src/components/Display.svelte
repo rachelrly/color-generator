@@ -8,7 +8,6 @@
   export let handleSelectColor: (color: ColorProps) => void
 </script>
 
-// we want to filter the display where we
 <div class="flex flex-col w-full items-center justify-center flex-1">
   {#if 'x' in sequence[0].display}
     <ColorTitle

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { afterUpdate, onMount } from 'svelte'
   import Title from './components/Title.svelte'
   import Controls from './components/Controls.svelte'
   import Display from './components/Display.svelte'
@@ -7,17 +8,9 @@
     getRandomColor,
     getFilledSequence,
     getData,
-    updateData,
-    isDisplayType
+    updateData
   } from './utils'
-  import type {
-    ColorPropKey,
-    ColorProps,
-    ControlOptions,
-    SquareProps
-  } from './types'
-
-  import { afterUpdate, onMount } from 'svelte'
+  import type { ColorPropKey, ColorProps, ControlOptions } from './types'
 
   export let base: ColorProps = getRandomColor()
   export let options: ControlOptions = {
@@ -27,7 +20,6 @@
   }
 
   $: list = getSquareDimensions(options?.square.width, options?.square.step)
-  $: isDisplayType(list[0], 'x')
   $: sequence = getFilledSequence(list, base, options)
   $: current = sequence[0].color // Selected color at top of screen
 
@@ -36,11 +28,12 @@
     if (data?.base && data?.options) {
       base = data.base
       options = data.options
+      list = data.list
     }
   })
 
   afterUpdate(() => {
-    updateData({ base, options })
+    updateData({ base, options, list })
   })
 
   function handleSelectColor(color: ColorProps) {
