@@ -5,7 +5,7 @@
   import {
     getSquareDimensions,
     getRandomColor,
-    getFilledSquares,
+    getFilledSequence,
     getData,
     updateData
   } from './utils'
@@ -14,14 +14,17 @@
 
   export let base: ColorProps = getRandomColor()
   export let options: ControlOptions = {
-    width: 300,
-    step: 50,
+    square: { width: 300, step: 50 },
+    row: { length: 10 },
     property: 'hue'
   }
 
-  $: squares = getSquareDimensions(options.width, options.step)
-  $: filledSquares = getFilledSquares(squares, base, options)
-  $: current = filledSquares[0].color // Selected color at top of screen
+  $: squares = getSquareDimensions(options?.square.width, options?.square.step)
+  $: sequence = new Array(options.row.length).fill({})
+
+  $: filled = getFilledSequence(sequence, base, options)
+  // DO MORE WORK TO DETACH FILLED LINGO FROM SQUARE LINGO
+  $: current = filled[0].color // Selected color at top of screen
 
   onMount(() => {
     const data = getData()
@@ -53,7 +56,13 @@
   <div
     class="w-full h-full p-2 flex flex-col items-center justify-evenly md:p-4 lg:p-6 lg:flex-row"
   >
-    <Display squares={filledSquares} {current} {handleSelectColor} />
+    <Display
+      squares={filled}
+      {sequence}
+      {current}
+      {handleSelectColor}
+      isRow={true}
+    />
     <Controls
       {handleRandomColor}
       {handleSelectOption}
