@@ -1,12 +1,11 @@
 <script lang="ts">
   import ColorTitle from './ColorTitle.svelte'
-  import type { SequenceProps } from '../types'
-  export let sequence: SequenceProps[]
-  console.log('THIS IS MY SEQUENCE')
+  import type { SequenceItem } from '../types'
+  export let sequence: SequenceItem[]
 </script>
 
-<div class="flex flex-col items-center justify-center">
+<div class="flex flex-col items-center justify-center h-full">
   {#each sequence as tile}
-    <ColorTitle color={tile ?? tile} swatchSize="lg" />
+    <ColorTitle color={tile.color} swatchSize="lg" />
   {/each}
 </div>

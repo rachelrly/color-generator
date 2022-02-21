@@ -19,13 +19,14 @@
     property: 'hue'
   }
 
-  $: list = getSquareDimensions(options?.square.width, options?.square.step)
+  $: list = new Array(10).fill({ type: 'row' })
+  // $: list = getSquareDimensions(options?.square.width, options?.square.step)
   $: sequence = getFilledSequence(list, base, options)
   $: current = sequence[0].color // Selected color at top of screen
 
   onMount(() => {
     const data = getData()
-    if (data?.base && data?.options) {
+    if (data?.base && data?.options && data?.list) {
       base = data.base
       options = data.options
       list = data.list

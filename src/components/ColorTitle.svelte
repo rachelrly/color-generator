@@ -8,7 +8,9 @@
 </script>
 
 <div
-  class="flex flex-row items-center justify-between {caption &&
+  class="flex {swatchSize === 'sm'
+    ? 'flex-row'
+    : 'flex-row-reverse'} items-center justify-between w-full {caption &&
     'w-full'} max-w-screen-sm"
 >
   <h3 class="text-gray-400 text-center">

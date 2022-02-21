@@ -17,8 +17,6 @@ export interface SquareSequenceItem extends Omit<SequenceItem, 'display'> {
   display: SquareProps
 }
 
-export interface SequenceItemOptional
-  extends Omit<SequenceItem, 'color' | 'display'> {
-  color?: ColorProps
-  display?: DisplayProps
-}
+// export interface RowSequenceItem extends Omit<SequenceItem, 'display'> {
+//   display: { type: 'row' }
+// }
