@@ -17,7 +17,7 @@
     DisplayType
   } from './types'
 
-  const row = new Array(10).fill({ type: 'row' })
+  const row = new Array(10).fill({})
   export let base: ColorProps = getRandomColor()
   export let options: ControlOptions = {
     square: { width: 300, step: 50 },
