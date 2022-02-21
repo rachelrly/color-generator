@@ -8,14 +8,10 @@
     getFilledSequence,
     getData,
     updateData,
-    getSquareDimensions
+    getSquareDimensions,
+    KEY_LIMITS
   } from './utils'
-  import type {
-    ColorPropKey,
-    ColorProps,
-    ControlOptions,
-    DisplayType
-  } from './types'
+  import type { ColorPropKey, ColorProps, ControlOptions } from './types'
 
   const row = new Array(10).fill({})
   export let base: ColorProps = getRandomColor()
@@ -24,7 +20,6 @@
     display: 'square',
     property: 'hue'
   }
-
   $: list =
     options.display !== 'row'
       ? getSquareDimensions(options?.square.width, options?.square.step)
@@ -61,6 +56,12 @@
   function handleRandomColor() {
     base = getRandomColor()
   }
+
+  function handleSetColorProp(input: string, key: ColorPropKey) {
+    const num = parseFloat(input).toFixed(2)
+    if (num >= KEY_LIMITS[key][0] && num <= KEY_LIMITS[key][1])
+      base = { ...base, [key]: num }
+  }
 </script>
 
 <main class="flex flex-col items-center h-min-screen">
@@ -73,6 +74,7 @@
       {handleRandomColor}
       {handleSelectColorKey}
       {handleToggleDisplayType}
+      {handleSetColorProp}
       selected={options.property}
     />
   </div>

@@ -3,6 +3,8 @@ export function getRandomDecimal(): number {
   return Math.random() * (1 - MIN) + MIN
 }
 
-export function getRandomInt({ min = 0, max = 255 }): number {
+export type LimitType = readonly [number, number]
+
+export function getRandomInt([min, max]: LimitType): number {
   return Math.random() * (max - min) + min
 }
