@@ -2,6 +2,7 @@
   // import Input from './Input.svelte'
   import Button from './Button.svelte'
   import ButtonChain from './ButtonChain.svelte'
+  import Input from './Input.svelte'
   import type { ColorPropKey } from '../types'
 
   // export let handleSetValue: (val: number) => void
@@ -9,23 +10,17 @@
   export let handleRandomColor: () => void
   export let handleToggleDisplayType: () => void
   export let handleSetColorProp: (input: string, prop: ColorPropKey) => void
-  export let error: string = ''
+  export let error: string = 'WHAT IS THIS AN ERROR OR SOMETHIGN'
   export let selected: ColorPropKey
 
-  function handleSetHue(input: string) {
-    handleSetColorProp(input, 'hue')
-  }
-  function handleSetSaturation(input: string) {
-    handleSetColorProp(input, 'saturation')
-  }
-  function handleSetLightness(input: string) {
-    handleSetColorProp(input, 'lightness')
+  function handleSetValue(input: string) {
+    handleSetColorProp(input, selected)
   }
 </script>
 
-<div class="flex flex-col mb-6 items-center md:mb-10">
-  <div class="h-8">
-    <span>{error}</span>
+<div class="flex flex-col mb-6 self-start  md:mb-10">
+  <div class="h-6">
+    <span class="text-red-600 text-sm text-center">{error}</span>
   </div>
   <h3 class="text-xl mb-2">Change the settings</h3>
   <div>
@@ -36,4 +31,5 @@
     handleSelectOption={handleSelectColorKey}
     selectedOption={selected}
   />
+  <Input label="color-input" {handleSetValue} />
 </div>

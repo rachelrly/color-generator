@@ -15,6 +15,7 @@
 
   const row = new Array(10).fill({})
   export let base: ColorProps = getRandomColor()
+  $: console.log('THIS IS MY BASE AFTER CHANGE', base)
   export let options: ControlOptions = {
     square: { width: 300, step: 50 },
     display: 'square',
@@ -58,9 +59,12 @@
   }
 
   function handleSetColorProp(input: string, key: ColorPropKey) {
-    const num = parseFloat(input).toFixed(2)
-    if (num >= KEY_LIMITS[key][0] && num <= KEY_LIMITS[key][1])
+    console.log('RUNNING SET COLOR PROP WOOO', { input, key })
+    const num = parseFloat(input)
+    if (num >= KEY_LIMITS[key][0] && num <= KEY_LIMITS[key][1]) {
+      console.log('SETTING BASE OR WHATEVER')
       base = { ...base, [key]: num }
+    }
   }
 </script>
 
