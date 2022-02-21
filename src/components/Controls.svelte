@@ -4,8 +4,9 @@
   import ButtonChain from './ButtonChain.svelte'
   import type { ColorPropKey } from '../types'
   // export let handleSetValue: (val: number) => void
-  export let handleSelectOption: (opt: ColorPropKey) => void
+  export let handleSelectColorKey: (opt: ColorPropKey) => void
   export let handleRandomColor: () => void
+  export let handleToggleDisplayType: () => void
   export let error: string = ''
   export let selected: ColorPropKey
 </script>
@@ -16,7 +17,12 @@
     <span>{error}</span>
   </div>
   <Button text="new color" onClick={handleRandomColor} />
-  <ButtonChain {handleSelectOption} selectedOption={selected} />
+  <Button text="display" onClick={handleToggleDisplayType} />
+
+  <ButtonChain
+    handleSelectOption={handleSelectColorKey}
+    selectedOption={selected}
+  />
   <!-- <Input label="width" setValue={handleSetValue} />
   <Input label="step" setValue={handleSetValue} /> -->
 </div>

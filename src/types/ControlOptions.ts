@@ -1,4 +1,5 @@
 import type { ColorPropKey } from './Color'
+import type { DisplayType } from './Display'
 
 export interface SquareOptions {
   width: number
@@ -12,5 +13,5 @@ export interface RowOptions {
 export interface ControlOptions {
   property: ColorPropKey
   square?: SquareOptions
-  row?: RowOptions
+  display: DisplayType
 }

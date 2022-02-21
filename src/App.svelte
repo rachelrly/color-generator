@@ -4,23 +4,31 @@
   import Controls from './components/Controls.svelte'
   import Display from './components/Display.svelte'
   import {
-    getSquareDimensions,
     getRandomColor,
     getFilledSequence,
     getData,
-    updateData
+    updateData,
+    getSquareDimensions
   } from './utils'
-  import type { ColorPropKey, ColorProps, ControlOptions } from './types'
+  import type {
+    ColorPropKey,
+    ColorProps,
+    ControlOptions,
+    DisplayType
+  } from './types'
 
+  const row = new Array(10).fill({ type: 'row' })
   export let base: ColorProps = getRandomColor()
   export let options: ControlOptions = {
     square: { width: 300, step: 50 },
-    row: { length: 10 },
+    display: 'square',
     property: 'hue'
   }
 
-  $: list = new Array(10).fill({ type: 'row' })
-  // $: list = getSquareDimensions(options?.square.width, options?.square.step)
+  $: list =
+    options.display !== 'row'
+      ? getSquareDimensions(options?.square.width, options?.square.step)
+      : row
   $: sequence = getFilledSequence(list, base, options)
   $: current = sequence[0].color // Selected color at top of screen
 
@@ -41,8 +49,13 @@
     current = color
   }
 
-  function handleSelectOption(prop: ColorPropKey) {
-    options = { ...options, property: prop }
+  function handleSelectColorKey(property: ColorPropKey) {
+    options = { ...options, property }
+  }
+
+  function handleToggleDisplayType() {
+    const display = options.display === 'square' ? 'row' : 'square'
+    options = { ...options, display }
   }
 
   function handleRandomColor() {
@@ -53,12 +66,13 @@
 <main class="flex flex-col items-center h-screen">
   <Title />
   <div
-    class="w-full h-full p-2 flex flex-col items-center justify-evenly md:p-4 lg:p-6 lg:flex-row"
+    class="w-full h-full p-2 flex flex-col items-center justify-around md:p-4 lg:p-6 lg:flex-row"
   >
     <Display {sequence} {current} {handleSelectColor} />
     <Controls
       {handleRandomColor}
-      {handleSelectOption}
+      {handleSelectColorKey}
+      {handleToggleDisplayType}
       selected={options.property}
     />
   </div>

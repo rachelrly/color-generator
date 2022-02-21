@@ -1,7 +1,6 @@
 import type {
   ColorProps,
   ControlOptions,
-  SquareProps,
   SequenceItem,
   DisplayProps
 } from '../types'
@@ -10,14 +9,14 @@ import { getPropertyIncrement } from './getColorIncrement'
 export function getFilledSequence(
   display: DisplayProps[],
   base: ColorProps,
-  options: ControlOptions
+  { property }: ControlOptions
 ): SequenceItem[] {
   const filled = []
   function fillDisplayItem(
     display: DisplayProps,
     color: ColorProps
   ): SequenceItem {
-    return { display, color: getPropertyIncrement(color, options.property) }
+    return { display, color: getPropertyIncrement(color, property) }
   }
 
   display.forEach((item: DisplayProps) => {
