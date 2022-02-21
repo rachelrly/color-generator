@@ -8,23 +8,19 @@
     getFilledSequence,
     getData,
     updateData,
-    getSquareDimensions
+    getSquareDimensions,
+    KEY_LIMITS
   } from './utils'
-  import type {
-    ColorPropKey,
-    ColorProps,
-    ControlOptions,
-    DisplayType
-  } from './types'
+  import type { ColorPropKey, ColorProps, ControlOptions } from './types'
 
-  const row = new Array(10).fill({ type: 'row' })
+  const row = new Array(10).fill({})
+  export let error: string = ''
   export let base: ColorProps = getRandomColor()
   export let options: ControlOptions = {
     square: { width: 300, step: 50 },
     display: 'square',
     property: 'hue'
   }
-
   $: list =
     options.display !== 'row'
       ? getSquareDimensions(options?.square.width, options?.square.step)
@@ -61,6 +57,22 @@
   function handleRandomColor() {
     base = getRandomColor()
   }
+
+  function handleSetColorProp(input: string, key: ColorPropKey) {
+    if (input === '') return
+    const num = Number(input)
+    if (!num) {
+      error = 'Please enter a number'
+    } else {
+      const keyLimit = KEY_LIMITS[key]
+      if (num >= keyLimit[0] && num <= keyLimit[1]) {
+        base = { ...base, [key]: num }
+        error = ''
+      } else {
+        error = `Please enter a ${key} between ${keyLimit[0]} and ${keyLimit[1]}`
+      }
+    }
+  }
 </script>
 
 <main class="flex flex-col items-center h-min-screen">
@@ -70,9 +82,11 @@
   >
     <Sequence {sequence} {current} {handleSelectColor} />
     <Controls
+      {error}
       {handleRandomColor}
       {handleSelectColorKey}
       {handleToggleDisplayType}
+      {handleSetColorProp}
       selected={options.property}
     />
   </div>
