@@ -1,26 +1,31 @@
 <script lang="ts">
-  import type { ColorProps, SquareProps } from '../types'
+  import type { ColorProps, SequenceItem, SquareSequenceItem } from '../types'
   import { getColorString } from '../utils'
-  export let squares: SquareProps[]
+  export let sequence: SequenceItem[]
+  // We already know this will be a display square, but the ts compiler doesn't
+  //    because it is validated in a nested prop
+  $: squares = sequence as SquareSequenceItem[]
   export let handleSelectColor: (color: ColorProps) => void
 </script>
 
 <div class="flex justify-center my-2">
   <svg
     class="block"
-    width={squares[0]?.width ?? '100%'}
-    height={squares[0]?.width ?? '100%'}
+    width={squares[0].display.width ?? '100%'}
+    height={squares[0].display.width ?? '100%'}
     xmlns="http://www.w3.org/2000/svg"
   >
-    {#each squares as { x, y, height, width, color }}
-      <rect
-        {x}
-        {y}
-        {height}
-        {width}
-        fill={color ? getColorString(color) : null}
-        on:click|self={() => handleSelectColor(color)}
-      />
+    {#each squares as { display, color }}
+      {#if color.lightness < 100}
+        <rect
+          x={display.x}
+          y={display.y}
+          height={display.height}
+          width={display.width}
+          fill={color ? getColorString(color) : null}
+          on:click|self={() => handleSelectColor(color)}
+        />
+      {/if}
     {/each}
   </svg>
 </div>

@@ -1,47 +1,61 @@
 <script lang="ts">
+  import { afterUpdate, onMount } from 'svelte'
   import Title from './components/Title.svelte'
   import Controls from './components/Controls.svelte'
-  import Square from './components/Square.svelte'
-  import ColorTitle from './components/ColorTitle.svelte'
+  import Sequence from './components/Sequence.svelte'
   import {
-    getSquareDimensions,
     getRandomColor,
-    getFilledSquares,
+    getFilledSequence,
     getData,
-    updateData
+    updateData,
+    getSquareDimensions
   } from './utils'
-  import type { ColorPropKey, ColorProps, ControlOptions } from './types'
-  import { afterUpdate, onMount } from 'svelte'
+  import type {
+    ColorPropKey,
+    ColorProps,
+    ControlOptions,
+    DisplayType
+  } from './types'
 
+  const row = new Array(10).fill({ type: 'row' })
   export let base: ColorProps = getRandomColor()
   export let options: ControlOptions = {
-    width: 300,
-    step: 50,
+    square: { width: 300, step: 50 },
+    display: 'square',
     property: 'hue'
   }
 
-  $: squares = getSquareDimensions(options.width, options.step)
-  $: filledSquares = getFilledSquares(squares, base, options)
-  $: current = filledSquares[0].color // Selected color at top of screen
+  $: list =
+    options.display !== 'row'
+      ? getSquareDimensions(options?.square.width, options?.square.step)
+      : row
+  $: sequence = getFilledSequence(list, base, options)
+  $: current = sequence[0].color // Selected color at top of screen
 
   onMount(() => {
     const data = getData()
-    if (data?.base && data?.options) {
+    if (data?.base && data?.options && data?.list) {
       base = data.base
       options = data.options
+      list = data.list
     }
   })
 
   afterUpdate(() => {
-    updateData({ base, options })
+    updateData({ base, options, list })
   })
 
   function handleSelectColor(color: ColorProps) {
     current = color
   }
 
-  function handleSelectOption(prop: ColorPropKey) {
-    options = { ...options, property: prop }
+  function handleSelectColorKey(property: ColorPropKey) {
+    options = { ...options, property }
+  }
+
+  function handleToggleDisplayType() {
+    const display = options.display === 'square' ? 'row' : 'square'
+    options = { ...options, display }
   }
 
   function handleRandomColor() {
@@ -49,18 +63,16 @@
   }
 </script>
 
-<main class="flex flex-col items-center h-screen">
+<main class="flex flex-col items-center h-min-screen">
   <Title />
   <div
-    class="w-full h-full p-2 flex flex-col items-center justify-evenly md:p-4 lg:p-6 lg:flex-row"
+    class="w-full h-full p-2 flex flex-col-reverse items-center md:p-4 lg:p-6 lg:pt-14 lg:flex-row lg:justify-evenly"
   >
-    <div class="flex flex-col w-full items-center justify-center flex-1">
-      <ColorTitle color={current} />
-      <Square squares={filledSquares} {handleSelectColor} />
-    </div>
+    <Sequence {sequence} {current} {handleSelectColor} />
     <Controls
       {handleRandomColor}
-      {handleSelectOption}
+      {handleSelectColorKey}
+      {handleToggleDisplayType}
       selected={options.property}
     />
   </div>

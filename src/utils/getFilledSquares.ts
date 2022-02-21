@@ -1,28 +1,29 @@
 import type {
   ColorProps,
   ControlOptions,
-  SquareDimensionProps,
-  SquareProps
+  SequenceItem,
+  DisplayProps
 } from '../types'
 import { getPropertyIncrement } from './getColorIncrement'
 
-export function getFilledSquares(
-  squares: SquareDimensionProps[],
-  color: ColorProps,
-  options: ControlOptions
-): SquareProps[] {
+export function getFilledSequence(
+  display: DisplayProps[],
+  base: ColorProps,
+  { property }: ControlOptions
+): SequenceItem[] {
   const filled = []
-  function fillSquare(
-    square: SquareDimensionProps,
+  function fillDisplayItem(
+    display: DisplayProps,
     color: ColorProps
-  ): SquareProps {
-    return { ...square, color: getPropertyIncrement(color, options.property) }
+  ): SequenceItem {
+    return { display, color: getPropertyIncrement(color, property) }
   }
-  squares.forEach((sq: SquareDimensionProps, i) => {
+
+  display.forEach((item: DisplayProps) => {
     if (filled.length) {
-      filled.push(fillSquare(sq, filled[filled.length - 1].color))
+      filled.push(fillDisplayItem(item, filled[filled.length - 1].color))
     } else {
-      filled.push(fillSquare(sq, color))
+      filled.push(fillDisplayItem(item, base))
     }
   })
   return filled
