@@ -17,7 +17,7 @@
   <label class="w-12 hidden" for={label}>{label}</label>
   <input
     name={label}
-    class="flex-1 p-1"
+    class="flex-1 p-1 ml-1 mt-1"
     on:blur={setValue}
     on:keydown={setValueOnEnter}
     bind:value

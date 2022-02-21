@@ -15,7 +15,7 @@
   }
 </script>
 
-<div class="flex flex-col mb-6 self-start  md:mb-10">
+<div class="flex flex-col mb-6 lg:self-start  md:mb-10">
   <div class="h-6">
     <span class="text-red-600 text-sm text-center">{error}</span>
   </div>

@@ -13,7 +13,7 @@
     : 'flex-row-reverse'} items-center justify-between w-full {caption &&
     'w-full'} max-w-screen-sm"
 >
-  <h3 class="text-gray-400 text-center">
+  <h3 class="text-gray-400 text-center self-start">
     {caption ?? ''}{getColorString(color)}
   </h3>
   <ColorSwatch {color} size={swatchSize} />

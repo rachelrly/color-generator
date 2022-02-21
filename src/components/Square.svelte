@@ -8,7 +8,7 @@
   export let handleSelectColor: (color: ColorProps) => void
 </script>
 
-<div class="flex justify-center my-2">
+<div class="flex justify-center my-4">
   <svg
     class="block"
     width={squares[0].display.width ?? '100%'}
