@@ -1,5 +1,5 @@
 import type { ColorProps } from '../types'
-import { getRandomDecimal, getRandomInt } from './getRandom'
+import { getRandomInt } from './getRandom'
 import { KEY_LIMITS } from './constants'
 
 export function getRandomColor(): ColorProps {
