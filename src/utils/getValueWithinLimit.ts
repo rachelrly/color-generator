@@ -9,8 +9,7 @@ export function getValueWithinLimit(
   if (value <= max && value >= min) {
     return value
   } else if (value <= min) {
-    // what is the logic here
-    console.log('BELOW MIN', { value, min })
+    // what should the logic be here
     return loop ? Math.abs(min + value) : min
   } else {
     return loop ? Math.abs(max - value) : max
