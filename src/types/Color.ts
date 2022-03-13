@@ -14,3 +14,18 @@ export interface ColorPropsOptions
 }
 
 export type ColorPropKey = keyof ColorProps
+
+export type ColorRange = [number, number | undefined]
+
+export interface ColorRangeProps {
+  range: ColorRange
+  loop: boolean
+}
+
+export interface KeyLimits
+  extends Omit<ColorProps, 'hue' | 'saturation' | 'lightness' | 'alpha'> {
+  hue: ColorRangeProps
+  saturation: ColorRangeProps
+  lightness: ColorRangeProps
+  alpha: ColorRangeProps
+}
