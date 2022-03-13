@@ -1,13 +1,14 @@
 import type { ColorProps, ColorPropKey } from '../types'
 import { getValueWithinLimit } from './getValueWithinLimit'
+import { KEY_LIMITS } from './constants'
 
 export function getPropertyIncrement(
   color: ColorProps,
-  property: ColorPropKey,
+  key: ColorPropKey,
   increment: number = 10
 ) {
   return {
     ...color,
-    [property]: getValueWithinLimit(color[property] + increment, property)
+    [key]: getValueWithinLimit(color[key] + increment, KEY_LIMITS[key])
   }
 }

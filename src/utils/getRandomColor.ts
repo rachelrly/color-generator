@@ -4,9 +4,9 @@ import { KEY_LIMITS } from './constants'
 
 export function getRandomColor(): ColorProps {
   return {
-    hue: getRandomInt(KEY_LIMITS.hue),
-    lightness: getRandomInt(KEY_LIMITS.lightness),
-    saturation: getRandomInt(KEY_LIMITS.saturation),
+    hue: getRandomInt(KEY_LIMITS.hue.range),
+    lightness: getRandomInt(KEY_LIMITS.lightness.range),
+    saturation: getRandomInt(KEY_LIMITS.saturation.range),
     alpha: 1
   }
 }
