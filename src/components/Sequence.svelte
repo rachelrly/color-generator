@@ -9,7 +9,7 @@
   export let handleSelectColor: (color: ColorProps) => void
 </script>
 
-<div class="flex flex-col h-full items-center">
+<div class="flex flex-col h-full w-full items-center">
   {#if 'x' in sequence[0].display}
     <ColorTitle
       color={current}

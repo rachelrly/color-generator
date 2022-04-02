@@ -11,7 +11,12 @@
     getSquareDimensions,
     KEY_LIMITS
   } from './utils'
-  import type { ColorPropKey, ColorProps, ControlOptions } from './types'
+  import type {
+    ColorPropKey,
+    ColorProps,
+    ControlOptions,
+    DisplayType
+  } from './types'
 
   const row = new Array(10).fill({})
   export let error: string = ''
@@ -49,9 +54,10 @@
     options = { ...options, property }
   }
 
-  function handleToggleDisplayType() {
-    const display = options.display === 'square' ? 'row' : 'square'
-    options = { ...options, display }
+  function handleSelectDisplayType(display: DisplayType) {
+    if (display !== options.display) {
+      options = { ...options, display }
+    }
   }
 
   function handleRandomColor() {
@@ -75,17 +81,18 @@
   }
 </script>
 
-<main class="flex flex-col items-center h-min-screen">
+<main class="flex flex-col items-center h-full h-min-screen">
   <Title />
   <div
-    class="w-full h-full p-2 flex flex-col-reverse items-center md:p-4 lg:p-6 lg:pt-14 lg:flex-row lg:justify-evenly"
+    class="w-full p-2 flex flex-col-reverse items-center md:p-4 md:h-full lg:h-full lg:p-6 lg:pt-14 lg:flex-row lg:justify-evenly"
   >
     <Sequence {sequence} {current} {handleSelectColor} />
     <Controls
+      display={options.display}
       {error}
       {handleRandomColor}
       {handleSelectColorKey}
-      {handleToggleDisplayType}
+      {handleSelectDisplayType}
       {handleSetColorProp}
       selected={options.property}
     />
