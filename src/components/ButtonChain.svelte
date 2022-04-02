@@ -2,18 +2,18 @@
   import Button from './Button.svelte'
   import type {
     ButtonChainOptionsType,
-    ButtonChainSupportedType
+    DisplayType,
+    ColorPropKey
   } from '../types'
-  export let chainOptions: ButtonChainOptionsType<ButtonChainSupportedType>
-  const { options, selected, handleSelectOption } = chainOptions
+  export let chainOptions: ButtonChainOptionsType<DisplayType | ColorPropKey>
 </script>
 
 <div class="w-full flex justify-between">
-  {#each options as opt}
+  {#each chainOptions.options as opt}
     <Button
       text={opt}
-      selected={selected === opt}
-      onClick={() => handleSelectOption(opt)}
+      selected={chainOptions.selected === opt}
+      onClick={() => chainOptions.handleSelectOption(opt)}
     />
   {/each}
 </div>
