@@ -21,9 +21,9 @@
 >
   <h3 class="text-xl mb-2">Change the options</h3>
   <div class="h-6">
-    <span class="text-red-600 text-sm text-center sm:text-xs">{error}</span>
+    <span class="text-red-600 text-center text-xs md:text-sm">{error}</span>
   </div>
-  <div class="w-full flex justify-between">
+  <div class="w-full flex justify-between pb-2">
     <Button text="new color" onClick={handleRandomColor} />
     <ButtonChain
       chainOptions={{

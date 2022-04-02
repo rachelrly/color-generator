@@ -8,7 +8,7 @@
   export let chainOptions: ButtonChainOptionsType<DisplayType | ColorPropKey>
 </script>
 
-<div class="w-full flex justify-between">
+<div class="flex w-full justify-center md:w-min">
   {#each chainOptions.options as opt}
     <Button
       text={opt}
