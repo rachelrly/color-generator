@@ -15,3 +15,11 @@ export interface ControlOptions {
   square?: SquareOptions
   display: DisplayType
 }
+
+export interface ButtonChainOptionsType<T> {
+  selected: T
+  options: T[]
+  handleSelectOption: (opt: T) => void
+}
+
+export type ButtonChainSupportedType = DisplayType | ColorPropKey

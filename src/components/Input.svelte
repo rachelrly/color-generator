@@ -21,8 +21,6 @@
     on:blur={setValue}
     on:keydown={setValueOnEnter}
     bind:value
-    type="text"
-    inputmode="numeric"
-    maxlength="3"
+    type="range"
   />
 </fieldset>

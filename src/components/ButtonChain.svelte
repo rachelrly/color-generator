@@ -1,16 +1,18 @@
 <script lang="ts">
   import Button from './Button.svelte'
-  import type { ColorPropKey } from '../types'
-  export let selectedOption: ColorPropKey
-  export let handleSelectOption: (opt: ColorPropKey) => void
-  const options: ColorPropKey[] = ['hue', 'saturation', 'lightness']
+  import type {
+    ButtonChainOptionsType,
+    ButtonChainSupportedType
+  } from '../types'
+  export let chainOptions: ButtonChainOptionsType<ButtonChainSupportedType>
+  const { options, selected, handleSelectOption } = chainOptions
 </script>
 
-<div>
+<div class="w-full flex justify-between">
   {#each options as opt}
     <Button
       text={opt}
-      selected={selectedOption === opt}
+      selected={selected === opt}
       onClick={() => handleSelectOption(opt)}
     />
   {/each}
