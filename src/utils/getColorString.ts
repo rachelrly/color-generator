@@ -8,10 +8,9 @@ export function getColorString({
 }: ColorProps): string {
   return `hsla(${display(hue)}, ${display(saturation)}%, ${display(
     lightness
-  )}%, ${display(alpha, false)})`
+  )}%, 1)`
 }
 
-function display(decimal: number, round = true): number {
-  const digits = round ? 0 : 2
-  return parseFloat(decimal.toFixed(digits))
+function display(decimal: number): number {
+  return Number(decimal)
 }
