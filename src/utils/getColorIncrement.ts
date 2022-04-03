@@ -7,7 +7,7 @@ export function getPropertyIncrement(
   increment: number = 10
 ) {
   const newValue = color[key] + increment
-  const max = KEY_LIMITS[key].range[0]
+  const max = KEY_LIMITS[key].range[1]
   return {
     ...color,
     [key]: newValue <= max ? newValue : max

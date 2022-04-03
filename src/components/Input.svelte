@@ -19,7 +19,7 @@
     class="flex-1 p-1 ml-1 mt-1"
     bind:value
     type="range"
-    min={minmax[1]}
-    max={minmax[0]}
+    min={minmax[0]}
+    max={minmax[1]}
   />
 </fieldset>
