@@ -22,10 +22,11 @@
   export let error: string = ''
   export let base: ColorProps = getRandomColor()
   export let options: ControlOptions = {
-    square: { width: 300, step: 50 },
+    square: { width: 300, step: 10 },
     display: 'square',
     property: 'hue'
   }
+  $: minmax = KEY_LIMITS[options.property].range
   $: list =
     options.display !== 'row'
       ? getSquareDimensions(options?.square.width, options?.square.step)
@@ -60,24 +61,12 @@
     }
   }
 
-  function handleRandomColor() {
-    base = getRandomColor()
+  function handleSetColorValue(value: number) {
+    base = { ...base, [options.property]: value }
   }
 
-  function handleSetColorProp(input: string, key: ColorPropKey) {
-    if (input === '') return
-    const num = Number(input)
-    if (!num) {
-      error = 'Please enter a number'
-    } else {
-      const keyLimit = KEY_LIMITS[key]
-      if (num >= keyLimit[0] && num <= keyLimit[1]) {
-        base = { ...base, [key]: num }
-        error = ''
-      } else {
-        error = `Please enter a ${key} between ${keyLimit[0]} and ${keyLimit[1]}`
-      }
-    }
+  function handleRandomColor() {
+    base = getRandomColor()
   }
 </script>
 
@@ -89,12 +78,13 @@
     <Sequence {sequence} {current} {handleSelectColor} />
     <Controls
       display={options.display}
+      selected={options.property}
       {error}
+      {minmax}
+      {handleSetColorValue}
       {handleRandomColor}
       {handleSelectColorKey}
       {handleSelectDisplayType}
-      {handleSetColorProp}
-      selected={options.property}
     />
   </div>
 </main>
