@@ -2,18 +2,16 @@
   import Button from './Button.svelte'
   import ButtonChain from './ButtonChain.svelte'
   import Input from './Input.svelte'
-  import type { ColorPropKey, DisplayType } from '../types'
+  import type { ColorPropKey, DisplayType, ColorRange } from '../types'
 
-  export let handleSelectColorKey: (opt: ColorPropKey) => void
-  export let handleRandomColor: () => void
-  export let handleSelectDisplayType: (opt: DisplayType) => void
-  export let handleSetColorProp: (input: string, prop: ColorPropKey) => void
   export let error: string = ''
   export let selected: ColorPropKey
   export let display: DisplayType
-  function handleSetValue(input: string) {
-    handleSetColorProp(input, selected)
-  }
+  export let minmax: ColorRange
+  export let handleSetColorValue: (value: number) => void
+  export let handleSelectColorKey: (opt: ColorPropKey) => void
+  export let handleRandomColor: () => void
+  export let handleSelectDisplayType: (opt: DisplayType) => void
 </script>
 
 <div
@@ -40,5 +38,5 @@
       handleSelectOption: handleSelectColorKey
     }}
   />
-  <Input label="color-input" {handleSetValue} />
+  <Input label="color-input" {minmax} {handleSetColorValue} />
 </div>
