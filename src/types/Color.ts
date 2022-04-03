@@ -15,7 +15,7 @@ export interface ColorPropsOptions
 
 export type ColorPropKey = keyof ColorProps
 
-export type ColorRange = [number, number | undefined]
+export type ColorRange = [number, number]
 
 export interface ColorRangeProps {
   range: ColorRange
